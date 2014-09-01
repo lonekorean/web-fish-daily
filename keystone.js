@@ -4,7 +4,7 @@ require('dotenv').load();
 
 // Require keystone
 var keystone = require('keystone'),
-	handlebars = require('express-handlebars');
+	expressHandlebars = require('express-handlebars');
 	
 
 // Initialise Keystone with your project's configuration.
@@ -17,13 +17,12 @@ keystone.init({
 	'name': 'Web Fish Daily',
 	'brand': 'Web Fish Daily',
 
-	'less': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'hbs',
 	
-	'custom engine': handlebars.create({
+	'custom engine': expressHandlebars.create({
 		layoutsDir: 'templates/views/layouts',
 		partialsDir: 'templates/views/partials',
 		defaultLayout: 'default',
@@ -41,7 +40,7 @@ keystone.init({
 
 // Load your project's Models
 
-keystone.import('models');
+keystone['import']('models');
 
 // Setup common locals for your templates. The following are required for the
 // bundled templates and layouts. Any runtime locals (that should be set uniquely

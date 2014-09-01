@@ -8,9 +8,9 @@
  * modules in your project's /lib directory.
  */
 
-var _ = require('underscore'),
-	querystring = require('querystring'),
-	keystone = require('keystone');
+var _ = require('underscore');
+	//querystring = require('querystring')
+	//keystone = require('keystone')
 
 
 /**

@@ -18,10 +18,10 @@
  * http://expressjs.com/api.html#app.VERB
  */
 
-var _ = require('underscore'),
-	keystone = require('keystone'),
+var keystone = require('keystone'),
 	middleware = require('./middleware'),
 	importRoutes = keystone.importer(__dirname);
+	//_ = require('underscore')
 
 // Common Middleware
 keystone.pre('routes', middleware.initLocals);

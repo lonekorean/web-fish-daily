@@ -1,30 +1,27 @@
 var gulp = require('gulp'),
 	jshint = require('gulp-jshint'),
-	jshintReporter = require('jshint-stylish'),
+	jshintStylish = require('jshint-stylish'),
+	sass = require('gulp-sass'),
 	watch = require('gulp-watch');
 
-/*
- * Create variables for our project paths so we can change in one place
- */
-var paths = {
-	'src':['./models/**/*.js','./routes/**/*.js', 'keystone.js', 'package.json'],
-	// enable for tests
-	//'tests':['./test/*.js', './test/**/*.js']
-};
+var jsPaths = ['./models/**/*.js','./routes/**/*.js', 'keystone.js', 'package.json'],
+	scssPaths = ['./public/styles/**/*.scss'];
 
-
-// gulp lint
-gulp.task('lint', function(){
-	gulp.src(paths.src)
+gulp.task('lint', function() {
+	gulp.src(jsPaths)
 		.pipe(jshint())
-		.pipe(jshint.reporter(jshintReporter));
-
+		.pipe(jshint.reporter(jshintStylish));
 });
 
-// gulp watcher for lint
-gulp.task('watchLint', function () {
-	gulp.src(paths.src)
+gulp.task('sass', function() {
+	gulp.src(scssPaths)
+		.pipe(sass({ errLogToConsole: true }))
+		.pipe(gulp.dest('./css'));
+})
+
+gulp.task('watch', function() {
+	gulp.src(jsPaths)
 		.pipe(watch())
 		.pipe(jshint())
-		.pipe(jshint.reporter(jshintReporter));
+		.pipe(jshint.reporter(jshintStylish));
 });
