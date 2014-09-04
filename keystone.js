@@ -57,14 +57,6 @@ keystone.set('locals', {
 
 keystone.set('routes', require('./routes'));
 
-// Setup common locals for your emails. The following are required by Keystone's
-// default email templates, you may remove them if you're using your own.
-
-// Configure the navigation bar in Keystone's Admin UI
-
-keystone.set('nav', {
-	'users': 'users'
-});
 
 // Start Keystone to connect to your database and initialise the web server
 

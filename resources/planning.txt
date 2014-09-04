@@ -30,7 +30,7 @@ LINK CATEGORIES
 - Article		blog posts, news articles, text tutorials
 - Demo			codepens
 - Discussion	forums, news groups, twitter
-- Utility		icon collections, css generators, regex testers, validators, parsers
+- Utility		icon collections, generators, validators, parsers, open source projects
 - Media			audio, video
 - RTFM			specs, documentation, API references for useful yet little known things
 - Humor			sarcastic posts, comics (meh?)
@@ -44,7 +44,7 @@ VIRTUAL LINK CATEGORIES
 PATHS
 =====
 /
-/2014-09-18
+/archives/2014-09-18
 /categories/articles
 /about
 
@@ -54,18 +54,14 @@ Users							(pre-baked)
 - Name		Types.Name
 - Email		Types.Email
 - Password	Types.Password
-- IsAdmin	Types.Boolean
 
 Link
-- Publish	Types.Date
 - Text		Types.Text
 - Url		Types.Url
-- Blurb		Types.Html
-- Category	Types.Relationship 	(LinkCategory)
-- Curator	Types.Relationship 	(User)
-
-LinkCategory
-- Name		Types.Text
+- Author	Types.Text
+- Blurb		Types.Textarea
+- Category	Types.Select
+- Publish	Types.Date
 
 NOTES
 =====
