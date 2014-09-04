@@ -2,26 +2,32 @@ var gulp = require('gulp'),
 	jshint = require('gulp-jshint'),
 	jshintStylish = require('jshint-stylish'),
 	sass = require('gulp-sass'),
-	watch = require('gulp-watch');
+	autoprefixer = require('gulp-autoprefixer');
 
-var jsPaths = ['./models/**/*.js','./routes/**/*.js', 'keystone.js', 'package.json'],
-	scssPaths = ['./public/styles/**/*.scss'];
+// file paths
+var jsFiles = ['./models/**/*.js', './routes/**/*.js', 'gulpfile.js', 'keystone.js', 'package.json'],
+	scssFiles = ['./public/styles/**/*.scss'];
 
-gulp.task('lint', function() {
-	gulp.src(jsPaths)
+// javascript stuff
+gulp.task('js', function() {
+	gulp.src(jsFiles)
 		.pipe(jshint())
 		.pipe(jshint.reporter(jshintStylish));
 });
 
-gulp.task('sass', function() {
-	gulp.src(scssPaths)
+// css stuff
+gulp.task('css', function() {
+	gulp.src(scssFiles)
 		.pipe(sass({ errLogToConsole: true }))
-		.pipe(gulp.dest('./css'));
-})
+		.pipe(autoprefixer())
+		.pipe(gulp.dest('./public/styles'));
+});
 
-gulp.task('watch', function() {
-	gulp.src(jsPaths)
-		.pipe(watch())
-		.pipe(jshint())
-		.pipe(jshint.reporter(jshintStylish));
+// build site
+gulp.task('build', ['js', 'css']);
+
+// build site and watch for changes
+gulp.task('watch', ['build'], function() {
+	gulp.watch(jsFiles, ['js']);
+	gulp.watch(scssFiles, ['css']);
 });
