@@ -1,33 +1,43 @@
 var gulp = require('gulp'),
-	jshint = require('gulp-jshint'),
-	jshintStylish = require('jshint-stylish'),
 	sass = require('gulp-sass'),
-	autoprefixer = require('gulp-autoprefixer');
+	autoprefixer = require('gulp-autoprefixer'),
+	jshint = require('gulp-jshint'),
+	jshintStylish = require('jshint-stylish');
 
 // file paths
-var jsFiles = ['./models/**/*.js', './routes/**/*.js', 'gulpfile.js', 'keystone.js', 'package.json'],
-	scssFiles = ['./public/styles/**/*.scss'];
+var cssSources = ['./styles/**/*.scss'],
+	jsFrontSources = ['./scripts/**/*.js'],
+	jsBackSources = ['./models/**/*.js', './routes/**/*.js', 'gulpfile.js', 'keystone.js', 'package.json'];
 
-// javascript stuff
-gulp.task('js', function() {
-	gulp.src(jsFiles)
+// css stuff
+gulp.task('css', function() {
+	gulp.src(cssSources)
+		.pipe(sass({ errLogToConsole: true }))
+		.pipe(autoprefixer())
+		.pipe(gulp.dest('./public/css'));
+});
+
+// front-end javascript
+gulp.task('js-front', function() {
+	gulp.src(jsFrontSources)
+		.pipe(jshint())
+		.pipe(jshint.reporter(jshintStylish))
+		.pipe(gulp.dest('./public/js'));
+});
+
+// back-end javascript
+gulp.task('js-back', function() {
+	gulp.src(jsBackSources)
 		.pipe(jshint())
 		.pipe(jshint.reporter(jshintStylish));
 });
 
-// css stuff
-gulp.task('css', function() {
-	gulp.src(scssFiles)
-		.pipe(sass({ errLogToConsole: true }))
-		.pipe(autoprefixer())
-		.pipe(gulp.dest('./public/styles'));
-});
-
 // build site
-gulp.task('build', ['js', 'css']);
+gulp.task('build', ['css', 'js-front', 'js-back']);
 
 // build site and watch for changes
 gulp.task('watch', ['build'], function() {
-	gulp.watch(jsFiles, ['js']);
-	gulp.watch(scssFiles, ['css']);
+	gulp.watch(cssSources, ['css']);
+	gulp.watch(jsFrontSources, ['js-front']);
+	gulp.watch(jsBackSources, ['js-back']);
 });
