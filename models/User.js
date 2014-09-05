@@ -10,7 +10,7 @@ var User = new keystone.List('User', {
 		unique: true
 	},
 	map: { name: 'name' },
-	defaultColumns: 'name, email',
+	defaultColumns: 'name|80%, email|20%',
 	defaultSort: 'name'
 });
 User.add({

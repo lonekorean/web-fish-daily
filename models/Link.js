@@ -6,15 +6,15 @@ var Link = new keystone.List('Link', {
 	track: true,
 	autokey: {
 		path: 'slug',
-		from: 'text',
+		from: 'title',
 		unique: true
 	},
-	map: { name: 'text' },
-	defaultColumns: 'text, publishOn, createdBy',
+	map: { name: 'title' },
+	defaultColumns: 'title|60%, publishOn|20%, createdBy|20%',
 	defaultSort: '-publishOn'
 });
 Link.add({
-	text: {
+	title: {
 		type: Types.Text,
 		initial: true,
 		required: true,

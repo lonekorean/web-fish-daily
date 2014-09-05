@@ -1,15 +1,28 @@
-var keystone = require('keystone');
+var keystone = require('keystone'),
+	async = require('async');
 
 exports = module.exports = function(req, res) {
+	var view = new keystone.View(req, res);
 	
-	var view = new keystone.View(req, res),
-		locals = res.locals;
-	
-	// locals.section is used to set the currently selected
-	// item in the header navigation.
-	locals.section = 'home';
-	
-	// Render the view
-	view.render('index');
-	
+	res.locals.data = {
+		links: []
+	};
+
+	// load today's links
+	view.on('init', function(next) {
+		// create UTC date, snapped to most recent midnight
+		var localDate = new Date();
+		var publishOn = new Date(localDate.getUTCFullYear(), localDate.getUTCMonth(), localDate.getUTCDate())
+		
+		keystone.list('Link').model.find()
+			.where('publishOn', publishOn)
+			.exec(function(err, results) {
+				console.log(results.length);
+				res.locals.data.links = results;
+				next(err);
+			});
+	});
+
+	// render
+	view.render('index');	
 };
