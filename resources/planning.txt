@@ -3,6 +3,11 @@ Site:		webfishdaily.com
 Email:		webfishdaily@gmail.com
 Twitter:	@WebFishDaily
 
+DEPLOYMENT
+==========
+http://webfishdaily-lonekorean.rhcloud.com/
+git push openshift HEAD
+
 TECHNOLOGY STACK
 ================
 - openshift 	https://www.openshift.com/
