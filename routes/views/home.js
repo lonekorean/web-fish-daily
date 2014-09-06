@@ -18,12 +18,11 @@ exports = module.exports = function(req, res) {
 		keystone.list('Link').model.find()
 			.where('publishOn', mostRecentMidnight)
 			.exec(function(err, results) {
-				console.log(results.length);
 				res.locals.data.links = results;
 				next(err);
 			});
 	});
 
 	// render
-	view.render('index');	
+	view.render('home');
 };
