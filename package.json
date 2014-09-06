@@ -24,6 +24,7 @@
     "npm": ">=1.3.14"
   },
   "scripts": {
+    "postinstall": "gulp build",
     "start": "node keystone.js"
   },
   "main": "keystone.js"

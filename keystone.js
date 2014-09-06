@@ -1,27 +1,16 @@
-// Simulate config options from your production environment by
-// customising the .env file in your project's root folder.
 require('dotenv').load();
 
-// Require keystone
 var keystone = require('keystone'),
 	expressHandlebars = require('express-handlebars');
-	
 
-// Initialise Keystone with your project's configuration.
-// See http://keystonejs.com/guide/config for available options
-// and documentation.
-
-
+// configuration
 keystone.init({
-
 	'name': 'Web Fish Daily',
 	'brand': 'Web Fish Daily',
-
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
 	'view engine': 'hbs',
-	
 	'custom engine': expressHandlebars.create({
 		layoutsDir: 'templates/views/layouts',
 		partialsDir: 'templates/views/partials',
@@ -29,35 +18,23 @@ keystone.init({
 		helpers: new require('./templates/views/helpers')(),
 		extname: '.hbs'
 	}).engine,
-	
 	'auto update': true,
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'cookie secret': 'y6efodHeho(i~HN;$0HP^)9Dd|SJT./CH1rG!khZM$~v)okHS<!$]HIA&[ofcJGq'
-
+	'cookie secret': 'y6efodHeho(i~HN;$0HP^)9Dd|SJT./CH1rG!khZM$~v)okHS<!$]HIA&[ofcJGq',
+	'mongo': process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/web-fish-daily'
 });
 
-// Load your project's Models
-
+// load models
 keystone['import']('models');
 
-// Setup common locals for your templates. The following are required for the
-// bundled templates and layouts. Any runtime locals (that should be set uniquely
-// for each request) should be added to ./routes/middleware.js
-
+// common locals for templates
 keystone.set('locals', {
-	_: require('underscore'),
-	env: keystone.get('env'),
-	utils: keystone.utils,
-	editable: keystone.content.editable
 });
 
-// Load your project's Routes
-
+// routing
 keystone.set('routes', require('./routes'));
 
-
-// Start Keystone to connect to your database and initialise the web server
-
+// it's go time
 keystone.start();
