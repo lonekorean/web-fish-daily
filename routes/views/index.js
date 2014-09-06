@@ -1,5 +1,5 @@
 var keystone = require('keystone'),
-	async = require('async');
+	moment = require('moment-timezone');
 
 exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
@@ -10,12 +10,13 @@ exports = module.exports = function(req, res) {
 
 	// load today's links
 	view.on('init', function(next) {
-		// create UTC date, snapped to most recent midnight
-		var localDate = new Date();
-		var publishOn = new Date(localDate.getUTCFullYear(), localDate.getUTCMonth(), localDate.getUTCDate())
+		// dates are stored in UTC, but we'll compare to Seattle time so that
+		// new links are published at Seattle's midnight instead of UTC midnight
+		var seattleMoment = moment.tz(Date.now(), 'America/Vancouver');
+		var mostRecentMidnight = new Date(seattleMoment.year(), seattleMoment.month(), seattleMoment.date());
 		
 		keystone.list('Link').model.find()
-			.where('publishOn', publishOn)
+			.where('publishOn', mostRecentMidnight)
 			.exec(function(err, results) {
 				console.log(results.length);
 				res.locals.data.links = results;

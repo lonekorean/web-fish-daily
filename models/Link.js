@@ -18,7 +18,7 @@ Link.add({
 		type: Types.Text,
 		initial: true,
 		required: true,
-		index: true,
+		index: true
 	},
 	url: {
 		type: Types.Url,
@@ -29,7 +29,7 @@ Link.add({
 		type: Types.Text,
 		initial: true,
 		required: true,
-		index: true,
+		index: true
 	},
 	blurb: {
 		type: Types.Textarea,
