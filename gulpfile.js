@@ -7,7 +7,7 @@ var gulp = require('gulp'),
 // file paths
 var cssSources = ['./styles/**/*.scss'],
 	jsFrontSources = ['./scripts/**/*.js'],
-	jsBackSources = ['./models/**/*.js', './routes/**/*.js', 'gulpfile.js', 'keystone.js', 'package.json'];
+	jsBackSources = ['./models/**/*.js', './routes/**/*.js', './templates/**/*.js', 'gulpfile.js', 'keystone.js', 'package.json'];
 
 // css stuff
 gulp.task('css', function() {

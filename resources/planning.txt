@@ -35,10 +35,9 @@ LINK CATEGORIES
 - Article		blog posts, news articles, text tutorials
 - Demo			codepens
 - Discussion	forums, news groups, twitter
-- Utility		icon collections, generators, validators, parsers, open source projects
 - Media			audio, video
-- RTFM			specs, documentation, API references for useful yet little known things
-- Humor			sarcastic posts, comics (meh?)
+- Reference		specs, documentation, APIs, cheat sheets
+- Utility		generators, validators, parsers
 
 VIRTUAL LINK CATEGORIES
 =======================
@@ -61,7 +60,7 @@ Users							(pre-baked)
 - Password	Types.Password
 
 Link
-- Text		Types.Text
+- Title		Types.Text
 - Url		Types.Url
 - Author	Types.Text
 - Blurb		Types.Textarea
@@ -74,3 +73,7 @@ NOTES
   https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history
 - Date navigation will be a combination of ajax calls and push state (possibly pre-loaded?)
 - Share widgets for each link (AddThis or custom?)
+
+BEFORE LAUNCH
+=============
+- Change Links view check for '/home' to '/'

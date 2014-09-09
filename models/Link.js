@@ -10,8 +10,8 @@ var Link = new keystone.List('Link', {
 		unique: true
 	},
 	map: { name: 'title' },
-	defaultColumns: 'title|60%, publishOn|20%, createdBy|20%',
-	defaultSort: '-publishOn'
+	defaultColumns: 'title|60%, publish|20%, createdBy|20%',
+	defaultSort: '-publish'
 });
 Link.add({
 	title: {
@@ -38,12 +38,12 @@ Link.add({
 	},
 	category: {
 		type: Types.Select,
-		options: 'article, demo, discussion, media, rtfm, utility',
+		options: 'article, demo, discussion, media, reference, utility',
 		initial: true,
 		required: true,
 		index: true
 	},
-	publishOn: {
+	publish: {
 		type: Types.Date,
 		initial: true,
 		required: true,

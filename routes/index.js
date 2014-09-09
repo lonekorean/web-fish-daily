@@ -5,7 +5,6 @@ var keystone = require('keystone'),
 
 // common middleware
 keystone.pre('routes', middleware.initLocals);
-keystone.pre('render', middleware.flashMessages);
 
 // import route controllers
 var routes = {
