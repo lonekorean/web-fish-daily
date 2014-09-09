@@ -15,8 +15,8 @@ var routes = {
 // setup route bindings
 exports = module.exports = function(app) {
 	app.get('/', routes.views.coming);
-	app.get('/home', middleware.requireUser, routes.views.home);
-	//app.get('/archives/:publishOn', routes.views.archives);
+	app.get('/home', middleware.requireUser, routes.views.links);
+	app.get('/archives/:date', routes.views.links);
 	//app.get('/categories/:category', routes.views.category);
 	//app.et('/about', routes.views.about);
 

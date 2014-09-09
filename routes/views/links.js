@@ -2,21 +2,23 @@ var keystone = require('keystone'),
 	moment = require('moment-timezone');
 
 exports = module.exports = function(req, res) {
+	function getCurrentDate() {
+		// dates are stored in UTC, but this uses Seattle time so that new
+		// links are published at Seattle's midnight instead of UTC midnight
+		return moment.tz(Date.now(), 'America/Vancouver').format('YYYY-M-D');
+	}
+
 	var view = new keystone.View(req, res);
-	
 	res.locals.data = {
 		links: []
 	};
 
 	// load today's links
 	view.on('init', function(next) {
-		// dates are stored in UTC, but we'll compare to Seattle time so that
-		// new links are published at Seattle's midnight instead of UTC midnight
-		var seattleMoment = moment.tz(Date.now(), 'America/Vancouver');
-		var mostRecentMidnight = new Date(seattleMoment.year(), seattleMoment.month(), seattleMoment.date());
+		var publishOn = req.params.date || getCurrentDate();
 		
 		keystone.list('Link').model.find()
-			.where('publishOn', mostRecentMidnight)
+			.where('publishOn', publishOn)
 			.exec(function(err, results) {
 				res.locals.data.links = results;
 				next(err);
@@ -24,5 +26,5 @@ exports = module.exports = function(req, res) {
 	});
 
 	// render
-	view.render('home');
+	view.render('links');
 };
