@@ -1,9 +1,10 @@
-{{# each data.links}}
-<div>
-	title: {{title}}<br>
-	url: {{url}}
-	publishOn: {{publish}}
-	---
-	{{test author}}
+<div class="cards">
+	{{# each data.links}}
+	<article>
+		<div class="category">{{category}}</div>
+		<h3><a herf="{{url}}" target="_blank">{{title}}</a></h3>
+		<div class="blurb">{{blurb}}</div>
+		<div class="author">{{formatAuthor author}}</div>
+	</article>
+	{{/each}}
 </div>
-{{/each}}

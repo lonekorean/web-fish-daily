@@ -7,34 +7,25 @@
 		<title>Web Fish Daily</title>
 
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link href="/css/vendor/normalize.css" rel="stylesheet">
 		<link href="/css/site.css" rel="stylesheet">
 	</head>
 	<body>
-		{{#if messages}}
-		<div id="flash-messages" class="container">
-			{{#if messages.info}}
-			<div class="alert alert-info">
-				{{{flashMessages messages.info}}}
-			</div>
-			{{/if}}
-			{{#if messages.success}}
-			<div class="alert alert-success">
-				{{{flashMessages messages.success}}}
-			</div>
-			{{/if}}
-			{{#if messages.warning}}
-			<div class="alert alert-warning">
-				{{{flashMessages messages.warning}}}
-			</div>
-			{{/if}}
-			{{#if messages.error}}
-			<div class="alert alert-danger">
-				{{{flashMessages messages.error}}}
-			</div>
-			{{/if}}
-		</div>
-		{{/if}}
+		<header>
+			<h1>Something Here</h1>
+			<nav>
+				<h2 class="current">Today</h2>
+				<a href="#" class="prev">September 9th</a>
+				<a href="#" class="next">September 11th</a>
+			</nav>
+		</header>
+		<main>
+			{{{body}}}
+		</main>
+		<footer>
+		</footer>
 
-		{{{body}}}
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="/js/site.js"></script>
 	</body>
 </html>

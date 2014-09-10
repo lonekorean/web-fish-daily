@@ -1,8 +1,8 @@
 module.exports = function() {
 	var _helpers = {};
 
-    _helpers.test = function(s){
-        return 'Sup, ' + s;
+    _helpers.formatAuthor = function(author){
+        return author;
     };
 
 	return _helpers;

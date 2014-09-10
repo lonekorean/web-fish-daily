@@ -1,15 +1,100 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+
+*, *::before, *::after {
+	box-sizing: border-box;
+}
+
 body {
-	margin: 40px;
-	font-family: sans-serif;
+	margin: 40px 10%;
+	font-family: 'Lato', sans-serif;
 	font-size: 1rem;
 	line-height: 1;
 	color: #333;
-	background-color: #fff;
+	background-color: #f4f4f4;
+}
+
+a {
+	font-size: 1.5rem;
+	text-decoration: none;
+	color: #007db7;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 40px;
+
+	.current {
+		order: 2;
+	}
+
+	.prev {
+		order: 1;
+	}
+
+	.next {
+		order: 3;
+	}
+}
+
+header {
+	margin-bottom: 40px;
 }
 
 h1 {
 	margin: 0;
-	font-weight: normal;
-	font-size: 2rem;
+	font-size: 4rem;
 	text-align: center;
+}
+
+h2 {
+	margin: 0;
+	font-size: 3rem;
+}
+
+h3 {
+	margin: 0 0 10px;
+	font-weight: normal;
+	font-size: 1.5rem;
+	line-height: 1.2;
+}
+
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 -20px;
+
+	article {
+		flex-basis: calc(33.333% - 40px);
+		margin: 20px;
+		padding: 10px;
+		border-bottom: solid 1px #ccc;
+		background-color: #fff;
+		border-radius: 10px;
+		position: relative;
+		padding-bottom: 30px;
+	}
+
+	.category {
+		padding-bottom: 10px;
+		border-bottom: dotted 1px #ccc;
+		margin-bottom: 10px;
+		color: #ccc;
+	}
+
+	.blurb {
+		margin-bottom: 10px;
+		line-height: 1.2;
+	}
+
+	.author {
+		position: absolute;
+		bottom: 10px;
+		color: #ccc;
+	}
 }
