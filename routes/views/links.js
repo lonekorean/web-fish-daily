@@ -14,39 +14,35 @@ exports = module.exports = function(req, res) {
 		links: []
 	};
 
-	function getNowDateString() {
-		// dates are stored in UTC, but this uses Seattle time so that new
-		// links are published at Seattle's midnight instead of UTC midnight
-		return moment.tz(Date.now(), TIMEZONE).format(DATE_FORMAT);
+	// get the present moment, timezone shifted
+	function getPresentMoment() {
+		return moment.tz(Date.now(), TIMEZONE)
 	}
 
-	function getOffsetDateString(dateString, dayOffset) {
-		return moment(dateString, DATE_FORMAT).add(dayOffset, 'd').format(DATE_FORMAT);
-	}
-
-	function getNowHour() {
-		return moment.tz(Date.now(), TIMEZONE).hour();
+	// create a new moment, offset by some number of days
+	function createOffsetMoment(originalMoment, dayOffset) {
+		return moment(originalMoment).add(dayOffset, 'd')
 	}
 
 	// calculate dates
 	view.on('init', function(next) {
 		// default to the present date
-		var currentDateString = getNowDateString();
+		var currentMoment = getPresentMoment();
 
 		// give incoming date param a chance to override, if valid
 		if (req.params.date) {
-			var incoming = moment(req.params.date, DATE_FORMAT);
-			if (!incoming.isValid()) {
+			var incomingMoment = moment(req.params.date, DATE_FORMAT);
+			if (incomingMoment.isValid()) {
+				currentMoment = incomingMoment;
+			} else {
 				// error
 				next('nope');
-			} else {
-				currentDateString = incoming.format(DATE_FORMAT);
 			}
 		}
 
-		res.locals.data.currentDate = currentDateString;
-		res.locals.data.prevDate = getOffsetDateString(currentDateString, -1);
-		res.locals.data.nextDate = getOffsetDateString(currentDateString, 1);
+		res.locals.data.currentDate = currentMoment.format(DATE_FORMAT);
+		res.locals.data.prevDate = createOffsetMoment(currentMoment, -1).format(DATE_FORMAT);
+		res.locals.data.nextDate = createOffsetMoment(currentMoment, 1).format(DATE_FORMAT);
 
 		next();
 	});
@@ -64,9 +60,7 @@ exports = module.exports = function(req, res) {
 
 	// load sneak peak link
 	view.on('init', function(next) {
-		if (req.route.path !== HOME_PATH || getNowHour() < SNEAK_PEAK_HOUR) {
-			next();
-		} else {
+		if (req.route.path === HOME_PATH && getPresentMoment().hour() >= SNEAK_PEAK_HOUR) {
 			keystone.list('Link').model.find()
 				.where('publish', res.locals.data.nextDate)
 				.limit(1)
@@ -76,6 +70,8 @@ exports = module.exports = function(req, res) {
 					}
 					next(err);
 				});
+		} else {
+			next();
 		}
 	});	
 
