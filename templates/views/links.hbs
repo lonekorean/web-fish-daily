@@ -1,11 +1,11 @@
 <div class="cards">
-	{{# each data.links}}
+	{{#each data.links}}
 	<article>
-		<div class="category">
-			{{category}}
-			<div class="author">by {{formatAuthor author}}</div>
+		<div class="info">
+			<span class="category">{{category}}</span>
+			<span class="author">{{formatAuthor author}}</span>
 		</div>
-		<h3><a herf="{{url}}" target="_blank">{{title}}</a></h3>
+		<h3><a href="{{url}}" target="_blank">{{title}}</a></h3>
 		<div class="blurb">{{blurb}}</div>
 	</article>
 	{{/each}}

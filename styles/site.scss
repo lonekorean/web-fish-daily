@@ -1,3 +1,5 @@
+$accent-color: #5F9F9F;
+
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 
 *, *::before, *::after {
@@ -15,11 +17,34 @@ body {
 
 a {
 	text-decoration: none;
-	color: #5F9F9F;
+	color: $accent-color;
+
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
-a:hover {
-	text-decoration: underline;
+h1, h2, h3 {
+	margin: 0;
+	line-height: 1.2;
+	font-weight: normal;
+}
+
+h1 {
+	font-size: 4rem;
+	text-align: center;
+}
+
+h2 {
+	font-size: 3rem;
+}
+
+h3 {
+	font-size: 1.5rem;
+}
+
+header {
+	margin-bottom: 40px;
 }
 
 nav {
@@ -27,42 +52,25 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 40px;
+	font-size: 1.5rem;
 
-	.current {
+	& > * {
+		flex: 1;
+	}
+
+	h2 {
 		order: 2;
+		text-align: center;
 	}
 
 	.prev {
 		order: 1;
-		font-size: 1.5rem;
 	}
 
 	.next {
 		order: 3;
-		font-size: 1.5rem;
+		text-align: right;
 	}
-}
-
-header {
-	margin-bottom: 40px;
-}
-
-h1 {
-	margin: 0;
-	font-size: 4rem;
-	text-align: center;
-}
-
-h2 {
-	margin: 0;
-	font-size: 3rem;
-}
-
-h3 {
-	margin: 0 0 10px;
-	font-weight: normal;
-	font-size: 1.5rem;
-	line-height: 1.2;
 }
 
 .cards {
@@ -71,23 +79,28 @@ h3 {
 	margin: 0 -10px;
 
 	article {
-		flex-basis: calc(33.333% - 20px);
+		flex: 1 1 calc(33.333% - 20px);
 		margin: 10px;
 		padding: 20px;
-		xborder-bottom: solid 1px #ccc;
-		background-color: #fff;
-		border-bottom-left-radius: 6px;
-		border-bottom-right-radius: 6px;
-		position: relative;
 		border-top: solid 4px #ccc;
+		border-radius: 0 0 6px 6px;
 		color: #666;
+		background-color: #fff;
 	}
 
-	.category {
+	h3 {
+		margin-bottom: 10px;
+	}
+
+	.info {
+		margin-bottom: 10px;
 		padding-bottom: 10px;
 		border-bottom: dashed 1px #ccc;
-		margin-bottom: 10px;
 		color: #ccc;
+	}
+
+	.author {
+		float: right;
 	}
 
 	.blurb {

@@ -11,5 +11,5 @@ exports = module.exports = function(req, res) {
 	});
 
 	// render
-	view.render('coming');
+	view.render('coming', { layout: false });
 };
