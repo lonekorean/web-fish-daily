@@ -1,10 +1,12 @@
 <div class="cards">
 	{{# each data.links}}
 	<article>
-		<div class="category">{{category}}</div>
+		<div class="category">
+			{{category}}
+			<div class="author">by {{formatAuthor author}}</div>
+		</div>
 		<h3><a herf="{{url}}" target="_blank">{{title}}</a></h3>
 		<div class="blurb">{{blurb}}</div>
-		<div class="author">{{formatAuthor author}}</div>
 	</article>
 	{{/each}}
 </div>

@@ -14,9 +14,8 @@ body {
 }
 
 a {
-	font-size: 1.5rem;
 	text-decoration: none;
-	color: #007db7;
+	color: #5F9F9F;
 }
 
 a:hover {
@@ -35,10 +34,12 @@ nav {
 
 	.prev {
 		order: 1;
+		font-size: 1.5rem;
 	}
 
 	.next {
 		order: 3;
+		font-size: 1.5rem;
 	}
 }
 
@@ -67,34 +68,33 @@ h3 {
 .cards {
 	display: flex;
 	flex-wrap: wrap;
-	margin: 0 -20px;
+	margin: 0 -10px;
 
 	article {
-		flex-basis: calc(33.333% - 40px);
-		margin: 20px;
-		padding: 10px;
-		border-bottom: solid 1px #ccc;
+		flex-basis: calc(33.333% - 20px);
+		margin: 10px;
+		padding: 20px;
+		xborder-bottom: solid 1px #ccc;
 		background-color: #fff;
-		border-radius: 10px;
+		border-bottom-left-radius: 6px;
+		border-bottom-right-radius: 6px;
 		position: relative;
-		padding-bottom: 30px;
+		border-top: solid 4px #ccc;
+		color: #666;
 	}
 
 	.category {
 		padding-bottom: 10px;
-		border-bottom: dotted 1px #ccc;
+		border-bottom: dashed 1px #ccc;
 		margin-bottom: 10px;
 		color: #ccc;
 	}
 
 	.blurb {
-		margin-bottom: 10px;
 		line-height: 1.2;
 	}
 
 	.author {
-		position: absolute;
-		bottom: 10px;
-		color: #ccc;
+		float: right;
 	}
 }
