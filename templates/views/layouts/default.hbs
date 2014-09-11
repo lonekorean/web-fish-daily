@@ -13,11 +13,14 @@
 	<body>
 		<header>
 			<h1>Something Here</h1>
+
+			{{#if showDateNav}}
 			<nav>
-				<h2>Today</h2>
-				<a href="#" class="prev">&laquo; September 9th</a>
-				<a href="#" class="next">September 11th &raquo;</a>
+				<h2>{{currentDateDisplay}}</h2>
+				<a href="/archives/{{prevDate}}" class="prev">&laquo; {{prevDateDisplay}}</a>
+				<a href="/archives/{{nextDate}}" class="next">{{nextDateDisplay}} &raquo;</a>
 			</nav>
+			{{/if}}
 		</header>
 		<main>
 			{{{body}}}
