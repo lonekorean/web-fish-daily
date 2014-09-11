@@ -73,6 +73,7 @@ NOTES
   https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history
 - Date navigation will be a combination of ajax calls and push state (possibly pre-loaded?)
 - Share widgets for each link (AddThis or custom?)
+- Rely on canonical URL spec to handle multiple date formats that are actually the same date
 
 BEFORE LAUNCH
 =============
