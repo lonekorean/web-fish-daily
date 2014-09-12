@@ -1,3 +1,4 @@
+var keystone = require('keystone');
 var moment = require('moment');
 
 module.exports = function() {
@@ -13,7 +14,7 @@ module.exports = function() {
 
 	_helpers.getNavUrl = function(date) {
 		var today = moment.tz('America/Vancouver').startOf('d').format('YYYY-MM-DD');
-		return ((date === today) ? '/home' : 'archives/' + date);
+		return ((date === today) ? '/home' : '/archives/' + date);
 	};
 
     _helpers.formatAuthor = function(author) {

@@ -15,19 +15,19 @@
 			<h1>Something Here</h1>
 
 			{{#if showDateNav}}
-				<nav>
-					<h2>{{formatCurrentDate currentDate 'MMM Do' isHome}}</h2>
+			<nav>
+				<h2>{{formatCurrentDate currentDate 'MMM Do' isHome}}</h2>
+				<div class="prev">
 					{{#if showPrevDate}}
-					<a href="{{getNavUrl prevDate}}" class="prev">
-						&laquo; {{formatDate prevDate 'MMM Do'}}
-					</a>
+					<a href="{{getNavUrl prevDate}}">&laquo; {{formatDate prevDate 'MMM Do'}}</a>
 					{{/if}}
+				</div>
+				<div class="next">
 					{{#if showNextDate}}
-					<a href="{{getNavUrl nextDate}}" class="next">
-						{{formatDate nextDate 'MMM Do'}} &raquo;
-					</a>
+					<a href="{{getNavUrl nextDate}}">{{formatDate nextDate 'MMM Do'}} &raquo;</a>
 					{{/if}}
-				</nav>
+				</div>
+			</nav>
 			{{/if}}
 		</header>
 		<main>
