@@ -3,64 +3,54 @@ var keystone = require('keystone'),
 
 exports = module.exports = function(req, res) {
 	// constants
-	var TIMEZONE = 'America/Vancouver';			// Seattle local time
-	var DATE_DATA_FORMAT = 'YYYY-M-D';			// ex: 2014-7-25
-	var DATE_CURRENT_FORMAT = 'MMMM Do, YYYY';	// ex: July 25th, 1980
-	var DATE_NAV_FORMAT = 'MMMM Do';			// ex: July 25th
-	var HOME_PATH = '/home';
+	var TIMEZONE = 'America/Vancouver';	// Seattle local time
+	var DATE_FORMAT = 'YYYY-MM-DD';		// ex: 2014-07-25
+	var LAUNCH_DATE = '2014-09-11';
 	var SNEAK_PEAK_HOUR = 18;
 
-	// setup
+	// create view
 	var view = new keystone.View(req, res);
 
-	// get the present moment, timezone shifted
-	function getPresentMoment() {
-		return moment.tz(Date.now(), TIMEZONE);
-	}
-
-	// create a new moment, offset by some number of days
-	function createOffsetMoment(originalMoment, dayOffset) {
-		return moment(originalMoment).add(dayOffset, 'd');
-	}
-
-	// calculate dates
+	// miscellaneous setup
 	view.on('init', function(next) {
-		// default to present day
-		var currentMoment = getPresentMoment();
+		res.locals.isHome = (req.route.path === '/home');
+		return next();
+	});
+
+	// calculate dates and related values
+	view.on('init', function(next) {
+		// default to the current date, timezone shifted, aligned to midnight
+		var currentDate = moment.tz(TIMEZONE).startOf('d').format(DATE_FORMAT);
 
 		// give incoming date param a chance to override
 		if (req.params.date) {
-			currentMoment = moment(req.params.date, DATE_DATA_FORMAT);
-			if (!currentMoment.isValid()) {
-				// invalid date, treat as not found archives page
-				res.status(404);
-				return next(new Error('Invalid date: ' + req.params.date));
+			currentDate = undefined;
+			var incomingMoment = moment(req.params.date, DATE_FORMAT);
+			if (incomingMoment.isValid()) {
+				var incomingDate = incomingMoment.format(DATE_FORMAT);
+				if (incomingDate >= LAUNCH_DATE && (incomingDate <= currentDate || req.user)) {
+					currentDate = incomingDate;
+				}
 			}
 		}
 
-		res.locals.showDateNav = true;
-
-		// current date
-		res.locals.currentDate = currentMoment.format(DATE_DATA_FORMAT);
-		res.locals.currentDateDisplay = (req.route.path === HOME_PATH) ? 'Today' : currentMoment.format(DATE_CURRENT_FORMAT);
-
-		// previous date
-		var prevMoment = createOffsetMoment(currentMoment, -1);
-		res.locals.prevDate	= prevMoment.format(DATE_DATA_FORMAT);
-		res.locals.prevDateDisplay = prevMoment.format(DATE_NAV_FORMAT);
-
-		// next date
-		var nextMoment = createOffsetMoment(currentMoment, 1);
-		res.locals.nextDate	= nextMoment.format(DATE_DATA_FORMAT);
-		res.locals.nextDateDisplay = nextMoment.format(DATE_NAV_FORMAT);
-
-		return next();
+		if (currentDate) {
+			res.locals.showDateNav = true;
+			res.locals.currentDate = currentDate;
+			res.locals.prevDate = moment(currentDate).add(-1, 'd').format(DATE_FORMAT);
+			res.locals.nextDate = moment(currentDate).add(1, 'd').format(DATE_FORMAT);
+			return next();
+		} else {
+			// incoming date param ruined everything
+			res.status(404);
+			return next(new Error('Incoming date is invalid: ' + req.params.date));							
+		}
 	});
 
 	// load links
 	view.on('init', function(next) {
 		keystone.list('Link').model.find()
-			.where('publish', res.locals.currentDate)
+			.where('publish', moment(res.locals.currentDate))
 			.limit(6)
 			.exec(function(err, results) {
 				res.locals.links = results;
@@ -70,9 +60,9 @@ exports = module.exports = function(req, res) {
 
 	// load sneak peak link
 	view.on('init', function(next) {
-		if (req.route.path === HOME_PATH && getPresentMoment().hour() >= SNEAK_PEAK_HOUR) {
+		if (res.locals.isHome && moment.tz(TIMEZONE).hour() >= SNEAK_PEAK_HOUR) {
 			keystone.list('Link').model.find()
-				.where('publish', res.locals.nextDate)
+				.where('publish', moment(res.locals.nextDate))
 				.limit(1)
 				.exec(function(err, results) {
 					if (results.length > 0) {

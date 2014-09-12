@@ -1,7 +1,7 @@
 var keystone = require('keystone');
 
 exports = module.exports = function(req, res) {
-	// setup
+	// create view
 	var view = new keystone.View(req, res);
 
 	// nothing
