@@ -19,32 +19,37 @@ exports = module.exports = function(req, res) {
 
 	// calculate dates and related values
 	view.on('init', function(next) {
-		// default to the current date, timezone shifted, aligned to midnight
-		var currentDate = moment.tz(TIMEZONE).startOf('d').format(DATE_FORMAT);
+		// the current date, timezone shifted, aligned to midnight
+		var actualCurrentDate = moment.tz(TIMEZONE).startOf('d').format(DATE_FORMAT);
 
 		// give incoming date param a chance to override
+		var overrideCurrentDate;
 		if (req.params.date) {
-			currentDate = undefined;
 			var incomingMoment = moment(req.params.date, DATE_FORMAT);
 			if (incomingMoment.isValid()) {
 				var incomingDate = incomingMoment.format(DATE_FORMAT);
-				if (incomingDate >= LAUNCH_DATE && (incomingDate <= currentDate || req.user)) {
-					currentDate = incomingDate;
+				if (incomingDate >= LAUNCH_DATE && (incomingDate <= actualCurrentDate || req.user)) {
+					overrideCurrentDate = incomingDate;
 				}
+			}
+
+			if (!overrideCurrentDate) {
+				// override not set, incoming date was invalid
+				res.status(404);
+				return next(new Error('Incoming date is invalid: ' + req.params.date));							
 			}
 		}
 
-		if (currentDate) {
-			res.locals.showDateNav = true;
-			res.locals.currentDate = currentDate;
-			res.locals.prevDate = moment(currentDate).add(-1, 'd').format(DATE_FORMAT);
-			res.locals.nextDate = moment(currentDate).add(1, 'd').format(DATE_FORMAT);
-			return next();
-		} else {
-			// incoming date param ruined everything
-			res.status(404);
-			return next(new Error('Incoming date is invalid: ' + req.params.date));							
-		}
+		res.locals.showDateNav = true;
+		res.locals.currentDate = overrideCurrentDate || actualCurrentDate;
+
+		res.locals.prevDate = moment(res.locals.currentDate).add(-1, 'd').format(DATE_FORMAT);
+		res.locals.showPrevDate = (res.locals.prevDate >= LAUNCH_DATE);
+
+		res.locals.nextDate = moment(res.locals.currentDate).add(1, 'd').format(DATE_FORMAT);
+		res.locals.showNextDate = (res.locals.nextDate <= actualCurrentDate || req.user);
+
+		return next();
 	});
 
 	// load links
