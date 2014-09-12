@@ -16,14 +16,14 @@
 
 			{{#if showDateNav}}
 				<nav>
-					<h2>{{#if isHome}}Today{{else}}{{formatDate currentDate 'MMM Do'}}{{/if}}</h2>
+					<h2>{{formatCurrentDate currentDate 'MMM Do' isHome}}</h2>
 					{{#if showPrevDate}}
-					<a href="/archives/{{formatDate prevDate 'YYYY-MM-DD'}}" class="prev">
+					<a href="{{getNavUrl prevDate}}" class="prev">
 						&laquo; {{formatDate prevDate 'MMM Do'}}
 					</a>
 					{{/if}}
 					{{#if showNextDate}}
-					<a href="/archives/{{formatDate nextDate 'YYYY-MM-DD'}}" class="next">
+					<a href="{{getNavUrl nextDate}}" class="next">
 						{{formatDate nextDate 'MMM Do'}} &raquo;
 					</a>
 					{{/if}}
