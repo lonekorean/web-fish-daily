@@ -12,7 +12,6 @@ exports = module.exports = function(req, res) {
 
 	// setup
 	var view = new keystone.View(req, res);
-	res.locals.showDateNav = true;
 
 	// get the present moment, timezone shifted
 	function getPresentMoment() {
@@ -33,10 +32,13 @@ exports = module.exports = function(req, res) {
 		if (req.params.date) {
 			currentMoment = moment(req.params.date, DATE_DATA_FORMAT);
 			if (!currentMoment.isValid()) {
-				// TODO: render 404 page
+				// invalid date, treat as not found archives page
 				res.status(404);
+				return next(new Error('Invalid date: ' + req.params.date));
 			}
 		}
+
+		res.locals.showDateNav = true;
 
 		// current date
 		res.locals.currentDate = currentMoment.format(DATE_DATA_FORMAT);
@@ -52,7 +54,7 @@ exports = module.exports = function(req, res) {
 		res.locals.nextDate	= nextMoment.format(DATE_DATA_FORMAT);
 		res.locals.nextDateDisplay = nextMoment.format(DATE_NAV_FORMAT);
 
-		next();
+		return next();
 	});
 
 	// load links
@@ -62,7 +64,7 @@ exports = module.exports = function(req, res) {
 			.limit(6)
 			.exec(function(err, results) {
 				res.locals.links = results;
-				next(err);
+				return next(err);
 			});
 	});
 
@@ -76,10 +78,10 @@ exports = module.exports = function(req, res) {
 					if (results.length > 0) {
 						res.locals.links.push(results[0]);
 					}
-					next(err);
+					return next(err);
 				});
 		} else {
-			next();
+			return next();
 		}
 	});	
 

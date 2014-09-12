@@ -6,7 +6,7 @@ exports = module.exports = function(req, res) {
 
 	// nothing
 	view.on('init', function(next) {
-		next();
+		return next();
 	});
 
 	// render
