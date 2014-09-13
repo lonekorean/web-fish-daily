@@ -11,7 +11,7 @@ body {
 	font-family: 'Lato', sans-serif;
 	font-size: 1rem;
 	line-height: 1;
-	color: #333;
+	color: #666;
 	background-color: #f4f4f4;
 }
 
@@ -26,7 +26,7 @@ a {
 
 h1, h2, h3 {
 	margin: 0;
-	line-height: 1.2;
+	line-height: 1.3;
 	font-weight: normal;
 }
 
@@ -55,20 +55,22 @@ nav {
 	font-size: 1.5rem;
 
 	& > * {
+		white-space: nowrap;
 	}
 
 	h2 {
 		order: 2;
+		flex: none;
 	}
 
 	.prev {
 		order: 1;
-		flex-grow: 1;
+		flex: 1 1 0;
 	}
 
 	.next {
 		order: 3;
-		flex-grow: 1;
+		flex: 1 1 0;
 		text-align: right;
 	}
 }
@@ -80,7 +82,7 @@ nav {
 	margin: -10px;
 
 	article {
-		flex-basis: calc(33.333% - 20px);
+		flex: 0 1 calc(33.333% - 20px);
 		margin: 10px;
 		padding: 20px;
 		border-top: solid 4px #ccc;
@@ -105,7 +107,7 @@ nav {
 	}
 
 	.blurb {
-		line-height: 1.2;
+		line-height: 1.3;
 	}
 
 	.author {
