@@ -41,7 +41,7 @@ exports = module.exports = function(req, res) {
 		res.locals.showPrevDate = (res.locals.prevDate >= config.launchDate);
 
 		res.locals.nextDate = moment(res.locals.currentDate).add(1, 'd').format(config.dateFormat);
-		res.locals.showNextDate = (res.locals.nextDate <= actualCurrentDate || req.user);
+		res.locals.showNextDate = !!(res.locals.nextDate <= actualCurrentDate || req.user);
 
 		return next();
 	});

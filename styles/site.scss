@@ -7,7 +7,7 @@ $accent-color: #5F9F9F;
 }
 
 body {
-	margin: 40px 10%;
+	margin: 40px 5%;
 	font-family: 'Lato', sans-serif;
 	font-size: 1rem;
 	line-height: 1;
@@ -55,20 +55,20 @@ nav {
 	font-size: 1.5rem;
 
 	& > * {
-		flex: 0 1 33.333%;
 	}
 
 	h2 {
 		order: 2;
-		text-align: center;
 	}
 
 	.prev {
 		order: 1;
+		flex-grow: 1;
 	}
 
 	.next {
 		order: 3;
+		flex-grow: 1;
 		text-align: right;
 	}
 }
@@ -80,7 +80,7 @@ nav {
 	margin: 0 -10px;
 
 	article {
-		flex: 0 1 calc(33.333% - 20px);
+		flex-basis: calc(33.333% - 20px);
 		margin: 10px;
 		padding: 20px;
 		border-top: solid 4px #ccc;
