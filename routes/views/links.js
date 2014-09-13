@@ -2,33 +2,27 @@ var keystone = require('keystone'),
 	moment = require('moment-timezone');
 
 exports = module.exports = function(req, res) {
-	// constants
-	var TIMEZONE = 'America/Vancouver';	// Seattle local time
-	var DATE_FORMAT = 'YYYY-MM-DD';		// ex: 2014-07-25
-	var LAUNCH_DATE = '2014-09-11';
-	var SNEAK_PEAK_HOUR = 18;
-
-	// create view
 	var view = new keystone.View(req, res);
+	var config = keystone.app.locals.config;
 
 	// miscellaneous setup
 	view.on('init', function(next) {
-		res.locals.isHome = (req.route.path === '/home');
+		res.locals.isHome = (req.route.path === config.homePath);
 		return next();
 	});
 
 	// calculate dates and related values
 	view.on('init', function(next) {
 		// the current date, timezone shifted, aligned to midnight
-		var actualCurrentDate = moment.tz(TIMEZONE).startOf('d').format(DATE_FORMAT);
+		var actualCurrentDate = moment.tz(config.timezone).startOf('d').format(config.dateFormat);
 
 		// give incoming date param a chance to override
 		var overrideCurrentDate;
 		if (req.params.date) {
-			var incomingMoment = moment(req.params.date, DATE_FORMAT);
+			var incomingMoment = moment(req.params.date, config.dateFormat);
 			if (incomingMoment.isValid()) {
-				var incomingDate = incomingMoment.format(DATE_FORMAT);
-				if (incomingDate >= LAUNCH_DATE && (incomingDate <= actualCurrentDate || req.user)) {
+				var incomingDate = incomingMoment.format(config.dateFormat);
+				if (incomingDate >= config.launchDate && (incomingDate <= actualCurrentDate || req.user)) {
 					overrideCurrentDate = incomingDate;
 				}
 			}
@@ -43,10 +37,10 @@ exports = module.exports = function(req, res) {
 		res.locals.showDateNav = true;
 		res.locals.currentDate = overrideCurrentDate || actualCurrentDate;
 
-		res.locals.prevDate = moment(res.locals.currentDate).add(-1, 'd').format(DATE_FORMAT);
-		res.locals.showPrevDate = (res.locals.prevDate >= LAUNCH_DATE);
+		res.locals.prevDate = moment(res.locals.currentDate).add(-1, 'd').format(config.dateFormat);
+		res.locals.showPrevDate = (res.locals.prevDate >= config.launchDate);
 
-		res.locals.nextDate = moment(res.locals.currentDate).add(1, 'd').format(DATE_FORMAT);
+		res.locals.nextDate = moment(res.locals.currentDate).add(1, 'd').format(config.dateFormat);
 		res.locals.showNextDate = (res.locals.nextDate <= actualCurrentDate || req.user);
 
 		return next();
@@ -65,7 +59,7 @@ exports = module.exports = function(req, res) {
 
 	// load sneak peak link
 	view.on('init', function(next) {
-		if (res.locals.isHome && moment.tz(TIMEZONE).hour() >= SNEAK_PEAK_HOUR) {
+		if (res.locals.isHome && moment.tz(config.timezone).hour() >= config.sneakPeakHour) {
 			keystone.list('Link').model.find()
 				.where('publish', moment(res.locals.nextDate))
 				.limit(1)

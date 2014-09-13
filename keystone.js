@@ -31,6 +31,13 @@ keystone['import']('models');
 
 // common locals for templates
 keystone.set('locals', {
+	config: {
+		homePath: '/home',
+		timezone: 'America/Vancouver',
+		dateFormat: 'YYYY-MM-DD',
+		launchDate: '2014-09-11',
+		sneakPeakHour: 18
+	}
 });
 
 // routing

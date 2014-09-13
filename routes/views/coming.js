@@ -1,8 +1,8 @@
 var keystone = require('keystone');
 
 exports = module.exports = function(req, res) {
-	// create view
 	var view = new keystone.View(req, res);
+	//var config = keystone.app.locals.config;
 
 	// nothing
 	view.on('init', function(next) {

@@ -1,8 +1,12 @@
 var keystone = require('keystone');
-var moment = require('moment');
+var moment = require('moment-timezone');
 
 module.exports = function() {
 	var _helpers = {};
+
+	// config isn't available when this helper object is created
+	// wrapping in an anonymous function solves this timing issue
+	var config = function() { return keystone.app.locals.config; };
 
 	_helpers.formatDate = function(date, format) {
 		return moment(date).format(format);
@@ -13,8 +17,8 @@ module.exports = function() {
 	};
 
 	_helpers.getNavUrl = function(date) {
-		var today = moment.tz('America/Vancouver').startOf('d').format('YYYY-MM-DD');
-		return ((date === today) ? '/home' : '/archives/' + date);
+		var today = moment.tz(config.timezone).startOf('d').format(config.dateFormat);
+		return ((date === today) ? config.homePath : '/archives/' + date);
 	};
 
     _helpers.formatAuthor = function(author) {
