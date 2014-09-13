@@ -12,22 +12,22 @@
 	</head>
 	<body>
 		<header>
-			<h1>Web Fish Daily</h1>
+			<h1><a href="/home">Web Fish Daily</a></h1>
 
 			{{#if showDateNav}}
-			<nav>
-				<h2>{{formatCurrentDate currentDate 'MMMM Do' isHome}}</h2>
-				<div class="prev">
-					{{#if showPrevDate}}
-					<a href="{{getNavUrl prevDate}}">&laquo; {{formatDate prevDate 'MMM Do'}}</a>
-					{{/if}}
-				</div>
-				<div class="next">
-					{{#if showNextDate}}
-					<a href="{{getNavUrl nextDate}}">{{formatDate nextDate 'MMM Do'}} &raquo;</a>
-					{{/if}}
-				</div>
-			</nav>
+				<nav>
+					<h2>{{formatCurrentDate currentDate 'MMMM Do' isHome}}</h2>
+					<div class="prev">
+						{{#if showPrevDate}}
+							<a href="{{getNavUrl prevDate}}">&laquo; {{formatDate prevDate 'MMM Do'}}</a>
+						{{/if}}
+					</div>
+					<div class="next">
+						{{#if showNextDate}}
+							<a href="{{getNavUrl nextDate}}">{{formatDate nextDate 'MMM Do'}} &raquo;</a>
+						{{/if}}
+					</div>
+				</nav>
 			{{/if}}
 		</header>
 		<main>

@@ -1,12 +1,24 @@
-<div class="cards">
-	{{#each links}}
-	<article>
-		<div class="info">
-			<span class="category">{{category}}</span>
-			<span class="author">{{{formatAuthor author}}}</span>
+{{#if currentDate}}
+	{{#if links.length}}
+		<div class="cards">
+			{{#each links}}
+				<article>
+					<div class="info">
+						<span class="category">{{category}}</span>
+						<span class="author">{{{formatAuthor author}}}</span>
+					</div>
+					<h3><a href="{{url}}" target="_blank">{{title}}</a></h3>
+					<div class="blurb">{{blurb}}</div>
+				</article>
+			{{/each}}
 		</div>
-		<h3><a href="{{url}}" target="_blank">{{title}}</a></h3>
-		<div class="blurb">{{blurb}}</div>
-	</article>
-	{{/each}}
-</div>
+	{{else}}
+		<div class="notice">
+			Sorry, no links for this day.
+		</div>
+	{{/if}}
+{{else}}
+	<div class="notice">
+		Sorry, the requested date is invalid.
+	</div>
+{{/if}}
