@@ -10,7 +10,7 @@ module.exports = function() {
 	};
 
 	_helpers.formatCurrentDate = function(date, format, isHome) {
-		return (isHome ? 'Today' : _helpers.formatDate(date, format));
+		return (isHome ? 'Today\'s Catch' : _helpers.formatDate(date, format));
 	};
 
 	_helpers.getNavUrl = function(date) {
@@ -27,6 +27,10 @@ module.exports = function() {
 		} else {
 			return author;
 		}
+	};
+
+	_helpers.outputScriptVars = function(scriptVars) {
+		return '<script>var scriptVars = ' + JSON.stringify(scriptVars) + '</script>';
 	};
 
 	return _helpers;

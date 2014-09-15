@@ -8,9 +8,9 @@ $accent-color: #5F9F9F;
 
 body {
 	margin: 40px 5%;
+	line-height: 1;
 	font-family: 'Lato', sans-serif;
 	font-size: 1rem;
-	line-height: 1;
 	color: #666;
 	background-color: #f4f4f4;
 }
@@ -26,7 +26,7 @@ a {
 
 h1, h2, h3 {
 	margin: 0;
-	line-height: 1.3;
+	line-height: 1.2;
 	font-weight: normal;
 }
 
@@ -44,7 +44,6 @@ h3 {
 }
 
 header {
-	margin-bottom: 40px;
 }
 
 nav {
@@ -79,7 +78,7 @@ nav {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	margin: -10px;
+	margin: 30px -10px -10px;
 
 	article {
 		flex: 0 1 calc(33.333% - 20px);
@@ -91,14 +90,7 @@ nav {
 		background-color: #fff;
 	}
 
-	h3 {
-		margin-bottom: 10px;
-	}
-
 	.info {
-		margin-bottom: 10px;
-		padding-bottom: 10px;
-		border-bottom: dashed 1px #ccc;
 		color: #ccc;
 	}
 
@@ -106,7 +98,14 @@ nav {
 		float: right;
 	}
 
+	h3 {
+		margin-top: 10px;
+		padding-top: 10px;
+		border-top: dashed 1px #ccc;
+	}
+
 	.blurb {
+		margin-top: 10px;
 		line-height: 1.3;
 	}
 
@@ -116,10 +115,20 @@ nav {
 }
 
 .notice {
+	margin-top: 40px;
 	padding: 40px 20px;
 	border-radius: 0 0 6px 6px;
 	border-radius: 10px;
+	line-height: 1.3;
 	text-align: center;
 	font-size: 2rem;
 	background-color: #fff;
+}
+
+.countdowns {
+	display: none;
+
+	.tomorrow, .sneak-peak {
+		display: none;
+	}
 }

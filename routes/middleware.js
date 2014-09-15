@@ -1,4 +1,5 @@
 exports.initLocals = function(req, res, next) {
+	res.locals.scriptVars = {};
 	return next();
 };
 

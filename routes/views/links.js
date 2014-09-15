@@ -30,7 +30,7 @@ exports = module.exports = function(req, res) {
 			if (!overrideCurrentDate) {
 				// override not set, incoming date was invalid
 				res.status(404);
-				return next(new Error('Incoming date is invalid: ' + req.params.date));							
+				return next(new Error('Incoming date is invalid: ' + req.params.date));						
 			}
 		}
 
@@ -55,6 +55,32 @@ exports = module.exports = function(req, res) {
 				res.locals.links = results;
 				return next(err);
 			});
+	});
+
+	// calculate countdowns
+	view.on('init', function(next) {
+		if (res.locals.isHome) {
+			// calculate moments
+			var currentMoment = moment.tz(config.timezone);
+			var todayMoment = currentMoment.clone().startOf('d');
+			var tomorrowMoment = todayMoment.clone().add(1, 'd');
+			var sneakPeakMoment = todayMoment.clone().hour(config.sneakPeakHour);
+
+			// calculate seconds until tomorrow
+			var tomorrowCountdown = tomorrowMoment.diff(currentMoment, 's');
+			if (tomorrowCountdown > 0) {
+				res.locals.scriptVars.tomorrowCountdown = tomorrowCountdown;
+			}
+			console.log(tomorrowCountdown);
+
+			// calculate seconds until sneak peak
+			var sneakPeakCountdown = sneakPeakMoment.diff(currentMoment, 's');
+			if (sneakPeakCountdown > 0) {
+				res.locals.scriptVars.sneakPeakCountdown = sneakPeakCountdown;
+			}
+		}
+
+		return next();
 	});
 
 	// load sneak peak link
