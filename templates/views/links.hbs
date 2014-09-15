@@ -2,14 +2,7 @@
 	{{#if links.length}}
 		<div class="cards">
 			{{#each links}}
-				<article>
-					<div class="info">
-						<span class="category">{{category}}</span>
-						<span class="author">{{{formatAuthor author}}}</span>
-					</div>
-					<h3><a href="{{url}}" target="_blank">{{title}}</a></h3>
-					<div class="blurb">{{blurb}}</div>
-				</article>
+				{{> card this}}
 			{{/each}}
 		</div>
 	{{else}}
@@ -18,16 +11,26 @@
 		</div>
 	{{/if}}
 
-	<div class="notice countdowns">
-		<div class="tomorrow">
-			Tomorrow's catch arrives in <span class="time"></span>.
+	{{#if isHome}}
+		<div class="countdowns">
+			<div class="tomorrow-coming">
+				Tomorrow's catch arrives in <span class="time"></span>.
+			</div>
+			{{#if scriptVars.sneakPeakCountdown}}
+				<div class="sneak-peak-coming">
+					Sneak peak in <span class="time"></span>.
+				</div>
+			{{/if}}
+			{{#if sneakPeakLink}}
+				<div class="sneak-peak-now">
+					Here's a sneak peak at tomorrow's catch.
+				</div>
+				<div class="cards">
+					{{> card sneakPeakLink}}
+				</div>
+			{{/if}}
 		</div>
-		<div class="sneak-peak">
-			Sneak peak in <span class="time"></span>.
-		</div>
-	</div>
-
-
+	{{/if}}
 {{else}}
 	<div class="notice">
 		Sorry, the requested date is invalid.

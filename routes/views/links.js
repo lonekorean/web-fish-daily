@@ -8,6 +8,8 @@ exports = module.exports = function(req, res) {
 	// miscellaneous setup
 	view.on('init', function(next) {
 		res.locals.isHome = (req.route.path === config.homePath);
+		res.locals.sneakPeakHour = req.query.sneakpeakhour || config.sneakPeakHour;
+
 		return next();
 	});
 
@@ -64,7 +66,7 @@ exports = module.exports = function(req, res) {
 			var currentMoment = moment.tz(config.timezone);
 			var todayMoment = currentMoment.clone().startOf('d');
 			var tomorrowMoment = todayMoment.clone().add(1, 'd');
-			var sneakPeakMoment = todayMoment.clone().hour(config.sneakPeakHour);
+			var sneakPeakMoment = todayMoment.clone().hour(res.locals.sneakPeakHour);
 
 			// calculate seconds until tomorrow
 			var tomorrowCountdown = tomorrowMoment.diff(currentMoment, 's');
@@ -85,13 +87,13 @@ exports = module.exports = function(req, res) {
 
 	// load sneak peak link
 	view.on('init', function(next) {
-		if (res.locals.isHome && moment.tz(config.timezone).hour() >= config.sneakPeakHour) {
+		if (res.locals.isHome && moment.tz(config.timezone).hour() >= res.locals.sneakPeakHour) {
 			keystone.list('Link').model.find()
 				.where('publish', moment(res.locals.nextDate))
 				.limit(1)
 				.exec(function(err, results) {
 					if (results.length > 0) {
-						res.locals.links.push(results[0]);
+						res.locals.sneakPeakLink = results[0];
 					}
 					return next(err);
 				});

@@ -126,9 +126,13 @@ nav {
 }
 
 .countdowns {
-	display: none;
+	margin-top: 40px;
 
-	.tomorrow, .sneak-peak {
-		display: none;
+	.tomorrow-coming, .sneak-peak-coming, .sneak-peak-now {
+		text-align: center;
+		font-size: 1.5rem;
+	}
+	.sneak-peak-coming, .sneak-peak-now {
+		margin-top: 10px;
 	}
 }
