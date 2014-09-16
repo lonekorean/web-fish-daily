@@ -16,4 +16,5 @@ exports = module.exports = function(app) {
 	app.get('/', routes.views.coming);
 	app.get('/home', middleware.requireUser, routes.views.links);
 	app.get('/archives/:date', routes.views.links);
+	app.get('*', routes.views.notFound);
 };
