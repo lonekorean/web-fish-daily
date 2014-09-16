@@ -13,7 +13,7 @@ exports = module.exports = function(req, res) {
 		return next();
 	});
 
-	// calculate dates and related values
+	// calculate dates and stuff
 	view.on('init', function(next) {
 		// the current date, timezone shifted, aligned to midnight
 		var actualCurrentDate = moment.tz(config.timezone).startOf('d').format(config.dateFormat);
@@ -35,15 +35,13 @@ exports = module.exports = function(req, res) {
 			}
 		}
 
-		res.locals.showDateNav = true;
+		// dates
 		res.locals.currentDate = overrideCurrentDate || actualCurrentDate;
-
-		// previous
 		res.locals.prevDate = moment(res.locals.currentDate).add(-1, 'd').format(config.dateFormat);
-		res.locals.showPrevDate = (res.locals.prevDate >= config.launchDate);
-
-		// next
 		res.locals.nextDate = moment(res.locals.currentDate).add(1, 'd').format(config.dateFormat);
+
+		// nav dates visiblity
+		res.locals.showPrevDate = (res.locals.prevDate >= config.launchDate);
 		res.locals.showNextDate = !!(res.locals.nextDate <= actualCurrentDate || req.user);
 
 		return next();
