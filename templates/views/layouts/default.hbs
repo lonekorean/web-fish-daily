@@ -4,9 +4,10 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>Web Fish Daily</title>
+		<title>{{#if pageTitle}}{{pageTitle}} - {{/if}}Web Fish Daily</title>
 
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 		<link href="/css/vendor/normalize.css" rel="stylesheet">
 		<link href="/css/site.css" rel="stylesheet">
 	</head>
@@ -19,12 +20,12 @@
 					<h2>{{formatCurrentDate currentDate 'MMMM Do' isHome}}</h2>
 					<div class="prev">
 						{{#if showPrevDate}}
-							<a href="{{getNavUrl prevDate}}">&laquo; {{formatDate prevDate 'Do'}}</a>
+							<a href="{{getNavUrl prevDate}}"><i class="fa fa-arrow-left"></i></a>
 						{{/if}}
 					</div>
 					<div class="next">
 						{{#if showNextDate}}
-							<a href="{{getNavUrl nextDate}}">{{formatDate nextDate 'Do'}} &raquo;</a>
+							<a href="{{getNavUrl nextDate}}"><i class="fa fa-arrow-right"></i></a>
 						{{/if}}
 					</div>
 				</nav>

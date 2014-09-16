@@ -38,9 +38,11 @@ exports = module.exports = function(req, res) {
 		res.locals.showDateNav = true;
 		res.locals.currentDate = overrideCurrentDate || actualCurrentDate;
 
+		// previous
 		res.locals.prevDate = moment(res.locals.currentDate).add(-1, 'd').format(config.dateFormat);
 		res.locals.showPrevDate = (res.locals.prevDate >= config.launchDate);
 
+		// next
 		res.locals.nextDate = moment(res.locals.currentDate).add(1, 'd').format(config.dateFormat);
 		res.locals.showNextDate = !!(res.locals.nextDate <= actualCurrentDate || req.user);
 
@@ -101,6 +103,15 @@ exports = module.exports = function(req, res) {
 			return next();
 		}
 	});	
+
+	// set page title
+	view.on('init', function(next) {
+		if (!res.locals.isHome) {
+			res.locals.pageTitle = moment(res.locals.currentDate).format('MMM Do, YYYY');
+		}
+
+		return next();
+	});
 
 	// render
 	view.render('links');
