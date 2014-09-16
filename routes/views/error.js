@@ -4,12 +4,11 @@ exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res);
 	//var config = keystone.app.locals.config;
 
-	// set response code
+	// nothing
 	view.on('init', function(next) {
-		res.status(404);
 		return next();
 	});
 
 	// render
-	view.render('notFound');
+	view.render('error');
 };

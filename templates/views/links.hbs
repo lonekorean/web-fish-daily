@@ -1,38 +1,32 @@
-{{#if currentDate}}
-	{{#if links.length}}
-		<div class="cards">
-			{{#each links}}
-				{{> card this}}
-			{{/each}}
-		</div>
-	{{else}}
-		<div class="notice">
-			Sorry, no links for this day.
-		</div>
-	{{/if}}
-
-	{{#if isHome}}
-		<div class="countdowns">
-			<div class="tomorrow-coming">
-				Tomorrow's catch arrives in <span class="time"></span>.
-			</div>
-			{{#if scriptVars.sneakPeakCountdown}}
-				<div class="sneak-peak-coming">
-					Sneak peak in <span class="time"></span>.
-				</div>
-			{{/if}}
-			{{#if sneakPeakLink}}
-				<div class="sneak-peak-now">
-					Here's a sneak peak at tomorrow's catch.
-				</div>
-				<div class="cards">
-					{{> card sneakPeakLink}}
-				</div>
-			{{/if}}
-		</div>
-	{{/if}}
+{{#if links.length}}
+	<div class="cards">
+		{{#each links}}
+			{{> card this}}
+		{{/each}}
+	</div>
 {{else}}
 	<div class="notice">
-		Sorry, the requested date is invalid.
+		Sorry, no links for this day.
+	</div>
+{{/if}}
+
+{{#if isHome}}
+	<div class="countdowns">
+		<div class="tomorrow-coming">
+			Tomorrow's catch arrives in <span class="time"></span>.
+		</div>
+		{{#if scriptVars.sneakPeakCountdown}}
+			<div class="sneak-peak-coming">
+				Sneak peak in <span class="time"></span>.
+			</div>
+		{{/if}}
+		{{#if sneakPeakLink}}
+			<div class="sneak-peak-now">
+				Here's a sneak peak at tomorrow's catch.
+			</div>
+			<div class="cards">
+				{{> card sneakPeakLink}}
+			</div>
+		{{/if}}
 	</div>
 {{/if}}

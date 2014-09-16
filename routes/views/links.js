@@ -31,8 +31,7 @@ exports = module.exports = function(req, res) {
 
 			if (!overrideCurrentDate) {
 				// override not set, incoming date was invalid
-				res.status(404);
-				return next(new Error('Incoming date is invalid: ' + req.params.date));						
+				return res.handleError(404, 'Invalid date. Stop trying to alter the fabric of time.');
 			}
 		}
 
@@ -54,7 +53,9 @@ exports = module.exports = function(req, res) {
 			.where('publish', moment(res.locals.currentDate))
 			.limit(6)
 			.exec(function(err, results) {
-				res.locals.links = results;
+				if (!err) {
+					res.locals.links = results;
+				}
 				return next(err);
 			});
 	});
@@ -73,7 +74,6 @@ exports = module.exports = function(req, res) {
 			if (tomorrowCountdown > 0) {
 				res.locals.scriptVars.tomorrowCountdown = tomorrowCountdown;
 			}
-			console.log(tomorrowCountdown);
 
 			// calculate seconds until sneak peak
 			var sneakPeakCountdown = sneakPeakMoment.diff(currentMoment, 's');
@@ -92,7 +92,7 @@ exports = module.exports = function(req, res) {
 				.where('publish', moment(res.locals.nextDate))
 				.limit(1)
 				.exec(function(err, results) {
-					if (results.length > 0) {
+					if (!err && results.length > 0) {
 						res.locals.sneakPeakLink = results[0];
 					}
 					return next(err);
