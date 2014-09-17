@@ -79,19 +79,18 @@ exports = module.exports = function(req, res) {
 			// calculate moments
 			var currentMoment = moment.tz(config.timezone);
 			var todayMoment = currentMoment.clone().startOf('d');
-			var tomorrowMoment = todayMoment.clone().add(1, 'd');
+
 			var sneakPeakMoment = todayMoment.clone().hour(res.locals.sneakPeakHour);
-
-			// calculate seconds until tomorrow
-			var tomorrowCountdown = tomorrowMoment.diff(currentMoment, 's');
-			if (tomorrowCountdown > 0) {
-				res.locals.scriptVars.tomorrowCountdown = tomorrowCountdown;
-			}
-
-			// calculate seconds until sneak peak
 			var sneakPeakCountdown = sneakPeakMoment.diff(currentMoment, 's');
 			if (sneakPeakCountdown > 0) {
+				// use sneak peak countdown
 				res.locals.scriptVars.sneakPeakCountdown = sneakPeakCountdown;
+			} else {
+				var tomorrowMoment = todayMoment.clone().add(1, 'd');
+				var tomorrowCountdown = tomorrowMoment.diff(currentMoment, 's');
+
+				// use tomorrow countdown
+				res.locals.scriptVars.tomorrowCountdown = tomorrowCountdown;
 			}
 		}
 

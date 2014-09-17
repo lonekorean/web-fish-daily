@@ -32,12 +32,15 @@ GULP TASKS
 
 LINK CATEGORIES
 ===============
-- Article		blog posts, news articles, text tutorials
-- Demo			codepens
-- Discussion	forums, news groups, twitter
-- Media			audio, video
-- Reference		specs, documentation, APIs, cheat sheets
-- Utility		generators, validators, parsers
+Article			news, opinion pieces
+Audio/Video		videos, podcasts
+Demo			codepens
+Discussion		forum threads, twitter threads, news groups
+Reference		cheat sheets, api specs
+Slides			powerpoint
+Tool			generators, validators, parsers, plugins
+Tutorial		how-tos
+Showcase		(basically a catch-all)
 
 VIRTUAL LINK CATEGORIES
 =======================

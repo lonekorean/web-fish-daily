@@ -145,14 +145,14 @@ main {
 	background-color: #fff;
 }
 
-.countdowns {
+.countdown {
 	margin-top: 40px;
+	text-align: center;
+	font-size: $font-l;
 
-	.tomorrow-coming, .sneak-peak-coming, .sneak-peak-now {
-		text-align: center;
-		font-size: $font-l;
-	}
-	.sneak-peak-coming, .sneak-peak-now {
-		margin-top: 10px;
+	.fa {
+		padding-right: 10px;
+		vertical-align: -.25rem;
+		font-size: $font-xl;
 	}
 }
