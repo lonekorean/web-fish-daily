@@ -108,6 +108,11 @@ main {
 		border-radius: 0 0 6px 6px;
 		color: #666;
 		background-color: #fff;
+
+		.fa {
+			margin-right: 6px;
+			transform: scale(1.2);
+		}
 	}
 
 	.info {
