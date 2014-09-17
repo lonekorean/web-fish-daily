@@ -47,6 +47,19 @@ exports = module.exports = function(req, res) {
 		return next();
 	});
 
+	// load announcement
+	view.on('init', function(next) {
+		keystone.list('Announcement').model.find()
+			.where('publish', moment(res.locals.currentDate))
+			.limit(1)
+			.exec(function(err, results) {
+				if (!err && results.length > 0) {
+					res.locals.announcement = results[0];
+				}
+				return next(err);
+			});
+	});
+
 	// load links
 	view.on('init', function(next) {
 		keystone.list('Link').model.find()

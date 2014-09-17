@@ -1,3 +1,10 @@
+{{#if announcement}}
+	<div class="announcement">
+		{{#if announcement.headline}}<strong>{{{announcement.headline}}}</strong> &mdash;{{/if}}
+		{{{announcement.message}}}
+	</div>
+{{/if}}
+
 {{#if links.length}}
 	<div class="cards">
 		{{#each links}}

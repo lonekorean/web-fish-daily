@@ -83,6 +83,17 @@ nav {
 	}
 }
 
+main {
+	margin-top: 20px;
+	border-top: dashed 1px #ccc;	
+}
+
+.announcement {
+	margin-top: 20px;
+	text-align: center;
+	font-size: $font-m;
+}
+
 .cards {
 	display: flex;
 	flex-wrap: wrap;

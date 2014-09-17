@@ -2,7 +2,7 @@ var keystone = require('keystone'),
 	Types = keystone.Field.Types;
 
 // model
-var Topic = new keystone.List('Topic', {
+var Announcement = new keystone.List('Announcement', {
 	track: true,
 	autokey: {
 		path: 'slug',
@@ -13,14 +13,14 @@ var Topic = new keystone.List('Topic', {
 	defaultColumns: 'headline|60%, publish|20%, createdBy|20%',
 	defaultSort: '-publish'
 });
-Topic.add({
+Announcement.add({
 	headline: {
 		type: Types.Text,
 		initial: true,
 		required: true,
 		index: true
 	},
-	blurb: {
+	message: {
 		type: Types.Textarea,
 		initial: true,
 		required: true
@@ -33,4 +33,4 @@ Topic.add({
 	}
 });
 
-Topic.register();
+Announcement.register();
