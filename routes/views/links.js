@@ -79,18 +79,14 @@ exports = module.exports = function(req, res) {
 			// calculate moments
 			var currentMoment = moment.tz(config.timezone);
 			var todayMoment = currentMoment.clone().startOf('d');
-
 			var sneakPeakMoment = todayMoment.clone().hour(res.locals.sneakPeakHour);
-			var sneakPeakCountdown = sneakPeakMoment.diff(currentMoment, 's');
-			if (sneakPeakCountdown > 0) {
-				// use sneak peak countdown
-				res.locals.scriptVars.sneakPeakCountdown = sneakPeakCountdown;
-			} else {
-				var tomorrowMoment = todayMoment.clone().add(1, 'd');
-				var tomorrowCountdown = tomorrowMoment.diff(currentMoment, 's');
+			var tomorrowMoment = todayMoment.clone().add(1, 'd');
 
-				// use tomorrow countdown
-				res.locals.scriptVars.tomorrowCountdown = tomorrowCountdown;
+			// the 1 second padding ensures non-zero values
+			if (currentMoment.isBefore(sneakPeakMoment)) {
+				res.locals.sneakPeakSeconds = sneakPeakMoment.diff(currentMoment, 's') + 1;
+			} else {
+				res.locals.tomorrowSeconds = tomorrowMoment.diff(currentMoment, 's') + 1;
 			}
 		}
 

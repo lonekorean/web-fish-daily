@@ -1,21 +1,19 @@
 $(function() {
 	function init() {
-		// try to start both countdowns, though at most one should exist
-		startCountdown(scriptVars.tomorrowCountdown, $('.tomorrow .time'));
-		startCountdown(scriptVars.sneakPeakCountdown, $('.sneak-peak .time'));
+		startCountdown();
 	}
 
-	function startCountdown(countdown, $time) {
-		if (countdown) {
-			setCountdown(countdown, $time);
-			setInterval(updateCountdown.bind(undefined, $time), 1000);
+	function startCountdown(el) {
+		var $time = $('.time');
+		if ($time.length > 0) {
+			$time.attr('data-end', new Date($time.attr('data-countdown')));
+			setCountdown($time);
+			var setInterval(updateCountdown.bind(undefined, $time), 1000);
 		}
 	}
 
-	function setCountdown(countdown, $time) {
-		$time
-			.text(formatCountdown(countdown))
-			.attr('data-countdown', countdown);		
+	function setCountdown() {
+		$time.text(formatCountdown(countdown));
 	}
 
 	function formatCountdown(countdown) {
