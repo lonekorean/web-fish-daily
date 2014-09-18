@@ -3,13 +3,12 @@ $(function() {
 		startCountdown();
 	}
 
-	function startCountdown(el) {
-		var $time = $('.time');
-		if ($time.length > 0) {
-			$time.attr('data-end', new Date($time.attr('data-countdown')));
-			setCountdown($time);
-			var setInterval(updateCountdown.bind(undefined, $time), 1000);
-		}
+	function startCountdown() {
+		$('.time').each(function() {
+			var $time = $(this);
+			var endDate = new Date($time.attr('data-seconds') * 1000);
+			setInterval(updateCountdown.bind(undefined, $time, endDate), 1000);
+		})
 	}
 
 	function setCountdown() {
