@@ -6,17 +6,20 @@ $(function() {
 	function startCountdown() {
 		$('.time').each(function() {
 			var $time = $(this);
-			var endDate = new Date($time.attr('data-seconds') * 1000);
-			setInterval(updateCountdown.bind(undefined, $time, endDate), 1000);
-		})
+			var interval = parseInt($time.attr('data-interval'), 10);
+			var endTime = Math.ceil(Date.now() / 1000) + interval;
+			setCountdown($time, endTime);
+			setInterval(updateCountdown.bind(undefined, $time, endTime), 1000);
+		});
 	}
 
-	function setCountdown() {
-		$time.text(formatCountdown(countdown));
+	function setCountdown($time, endTime) {
+		var interval = endTime - Math.ceil(Date.now() / 1000);
+		$time.text(formatCountdown(interval));
 	}
 
-	function formatCountdown(countdown) {
-		var date = new Date(countdown * 1000);
+	function formatCountdown(interval) {
+		var date = new Date(interval * 1000);
 		var hours = date.getUTCHours();
 		var minutes = date.getUTCMinutes();
 		var seconds = date.getUTCSeconds();
@@ -30,14 +33,11 @@ $(function() {
 		}
 	}
 
-	function updateCountdown($time) {
-		var countdown = $time.attr('data-countdown') - 1;
-
-		if (countdown > 0) {
-			setCountdown(countdown, $time);
+	function updateCountdown($time, endTime) {
+		if (Math.ceil(Date.now() / 1000) < endTime) {
+			setCountdown($time, endTime);
 		} else {
-			// stop countdown and reload page
-			$time.removeAttr('data-countdown');
+			// done
 			location.reload(true);
 		}
 	}

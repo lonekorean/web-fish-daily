@@ -84,9 +84,9 @@ exports = module.exports = function(req, res) {
 
 			// the 1 second padding ensures non-zero values
 			if (currentMoment.isBefore(sneakPeakMoment)) {
-				res.locals.sneakPeakSeconds = sneakPeakMoment.diff(currentMoment, 's') + 1;
+				res.locals.sneakPeakInterval = sneakPeakMoment.diff(currentMoment, 's') + 1;
 			} else {
-				res.locals.tomorrowSeconds = tomorrowMoment.diff(currentMoment, 's') + 1;
+				res.locals.tomorrowInterval = tomorrowMoment.diff(currentMoment, 's') + 1;
 			}
 		}
 
