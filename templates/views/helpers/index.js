@@ -19,6 +19,21 @@ module.exports = function() {
 		return ((date === today) ? config.homePath : '/archives/' + date);
 	};
 
+	_helpers.mapCategoryIcon = function(category) {
+		var map = {
+			'article'		: 'fa-file-text-o',
+			'audio/video'	: 'fa-volume-up',
+			'demo'			: 'fa-cogs',
+			'discussion'	: 'fa-comments',
+			'reference'		: 'fa-book',
+			'slides'		: 'fa-list-alt',
+			'tool'			: 'fa-wrench',
+			'tutorial'		: 'fa-code',
+			'showcase'		: 'fa-star'
+		}
+		return (map[category] || 'fa-circle-o');
+	}
+
 	_helpers.formatAuthor = function(author) {
 		if(!author) {
 			return '';

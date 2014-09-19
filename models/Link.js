@@ -38,7 +38,7 @@ Link.add({
 	},
 	category: {
 		type: Types.Select,
-		options: 'article, demo, discussion, media, reference, utility',
+		options: 'article, audio/video, demo, discussion, reference, slides, tool, tutorial, showcase',
 		initial: true,
 		required: true,
 		index: true

@@ -17,21 +17,22 @@
 	</div>
 {{/if}}
 
-{{#if sneakPeakSeconds}}
+{{#if isHome}}
 	<div class="countdown">
 		<i class="fa fa-clock-o"></i>
-		Sneak peak at tomorrow's catch in <span class="time" data-seconds="{{sneakPeakSeconds}}"></span>.
+		<span>
+			{{#if sneakPeakSeconds}}
+				Sneak peak at tomorrow's catch in <span class="time" data-seconds="{{sneakPeakSeconds}}"></span>.
+			{{/if}}
+			{{#if tomorrowSeconds}}
+				Tomorrow's catch arrives in <span class="time" data-seconds="{{tomorrowSeconds}}"></span>.
+				{{#if sneakPeakLink}}Here's a sneak peak.{{/if}}
+			{{/if}}
+		</span>
 	</div>
-{{/if}}
-{{#if tomorrowSeconds}}
-	<div class="countdown">
-		<i class="fa fa-clock-o"></i>
-		Tomorrow's catch arrives in <span class="time" data-seconds="{{tomorrowSeconds}}"></span>.
-		{{#if sneakPeakLink}}Here's a sneak peak.{{/if}}
-	</div>
-{{/if}}
-{{#if sneakPeakLink}}
-	<div class="cards">
-		{{> card sneakPeakLink}}
-	</div>
+	{{#if sneakPeakLink}}
+		<div class="cards">
+			{{> card sneakPeakLink}}
+		</div>
+	{{/if}}
 {{/if}}

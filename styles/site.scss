@@ -108,15 +108,16 @@ main {
 		border-radius: 0 0 6px 6px;
 		color: #666;
 		background-color: #fff;
-
-		.fa {
-			margin-right: 6px;
-			transform: scale(1.2);
-		}
 	}
 
 	.info {
 		color: #ccc;
+
+		.fa {
+			margin-right: 8px;
+			transform: scale(1.2);
+			transform-origin: 0;
+		}
 	}
 
 	.author {
@@ -155,9 +156,12 @@ main {
 	text-align: center;
 	font-size: $font-l;
 
+	& > * {
+		vertical-align: middle;
+	}
+
 	.fa {
-		padding-right: 10px;
-		vertical-align: -.25rem;
+		margin-right: 6px;
 		font-size: $font-xl;
 	}
 }
