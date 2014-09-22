@@ -37,8 +37,8 @@ Link.add({
 		required: true
 	},
 	category: {
-		type: Types.Select,
-		options: 'article, audio/video, demo, discussion, reference, slides, tool, tutorial, showcase',
+		type: Types.Relationship,
+		ref: 'LinkCategory',
 		initial: true,
 		required: true,
 		index: true

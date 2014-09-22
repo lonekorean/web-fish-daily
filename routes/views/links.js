@@ -65,6 +65,7 @@ exports = module.exports = function(req, res) {
 		keystone.list('Link').model.find()
 			.where('publish', moment(res.locals.currentDate))
 			.limit(6)
+			.populate('category')
 			.exec(function(err, results) {
 				if (!err) {
 					res.locals.links = results;

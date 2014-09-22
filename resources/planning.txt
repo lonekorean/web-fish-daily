@@ -32,15 +32,15 @@ GULP TASKS
 
 LINK CATEGORIES
 ===============
-Article			news, opinion pieces
-Audio/Video		videos, podcasts
-Demo			codepens
-Discussion		forum threads, twitter threads, news groups
-Reference		cheat sheets, api specs
-Slides			powerpoint
-Tool			generators, validators, parsers, plugins
-Tutorial		how-tos
-Showcase		(basically a catch-all)
+Article			fa-file-text-o		news, opinion pieces
+Audio/Video		fa-volume-up		videos, podcasts
+Demo			fa-cogs				codepens
+Discussion		fa-comments			forum threads, twitter threads, news groups
+Reference		fa-book				cheat sheets, api specs
+Slides			fa-folder-open		powerpoint
+Tool			fa-wrench			generators, validators, parsers, plugins
+Tutorial		fa-code				how-tos
+Showcase		fa-star				(basically a catch-all)
 
 VIRTUAL LINK CATEGORIES
 =======================
