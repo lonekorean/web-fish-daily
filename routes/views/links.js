@@ -100,6 +100,7 @@ exports = module.exports = function(req, res) {
 			keystone.list('Link').model.find()
 				.where('publish', moment(res.locals.nextDate))
 				.limit(1)
+				.populate('category')
 				.exec(function(err, results) {
 					if (!err && results.length > 0) {
 						res.locals.sneakPeakLink = results[0];
