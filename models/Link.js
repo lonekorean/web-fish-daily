@@ -17,8 +17,7 @@ Link.add({
 	title: {
 		type: Types.Text,
 		initial: true,
-		required: true,
-		index: true
+		required: true
 	},
 	url: {
 		type: Types.Url,
@@ -28,8 +27,7 @@ Link.add({
 	author: {
 		type: Types.Text,
 		initial: true,
-		required: true,
-		index: true
+		required: true
 	},
 	blurb: {
 		type: Types.Textarea,
@@ -48,6 +46,10 @@ Link.add({
 		initial: true,
 		required: true,
 		index: true
+	},
+	priority: {
+		type: Types.Number,
+		initial: true
 	}
 });
 

@@ -23,8 +23,7 @@ User.add({
 	email: {
 		type: Types.Email,
 		initial: true,
-		required: true,
-		index: true
+		required: true
 	},
 	password: {
 		type: Types.Password,

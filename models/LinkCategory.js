@@ -17,8 +17,7 @@ LinkCategory.add({
 	name: {
 		type: Types.Text,
 		initial: true,
-		required: true,
-		index: true
+		required: true
 	},
 	description: {
 		type: Types.Textarea,
@@ -30,6 +29,11 @@ LinkCategory.add({
 		initial: true,
 		required: true
 	}
+});
+
+LinkCategory.relationship({
+	ref: 'Link',
+	path: 'category'
 });
 
 LinkCategory.register();

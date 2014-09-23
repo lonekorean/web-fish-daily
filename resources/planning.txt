@@ -55,21 +55,6 @@ PATHS
 /categories/articles
 /about
 
-SCHEMA
-======
-Users							(pre-baked)
-- Name		Types.Name
-- Email		Types.Email
-- Password	Types.Password
-
-Link
-- Title		Types.Text
-- Url		Types.Url
-- Author	Types.Text
-- Blurb		Types.Textarea
-- Category	Types.Select
-- Publish	Types.Date
-
 NOTES
 =====
 - Using history.pushState()

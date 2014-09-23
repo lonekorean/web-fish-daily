@@ -64,7 +64,7 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		keystone.list('Link').model.find()
 			.where('publish', moment(res.locals.currentDate))
-			.limit(6)
+			.sort('-priority')
 			.populate('category')
 			.exec(function(err, results) {
 				if (!err) {
@@ -99,6 +99,7 @@ exports = module.exports = function(req, res) {
 		if (res.locals.isHome && moment.tz(config.timezone).hour() >= res.locals.sneakPeakHour) {
 			keystone.list('Link').model.find()
 				.where('publish', moment(res.locals.nextDate))
+				.sort('-priority')
 				.limit(1)
 				.populate('category')
 				.exec(function(err, results) {
@@ -110,7 +111,7 @@ exports = module.exports = function(req, res) {
 		} else {
 			return next();
 		}
-	});	
+	});
 
 	// set page title
 	view.on('init', function(next) {

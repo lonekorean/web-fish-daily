@@ -17,8 +17,7 @@ Announcement.add({
 	headline: {
 		type: Types.Text,
 		initial: true,
-		required: true,
-		index: true
+		required: true
 	},
 	message: {
 		type: Types.Textarea,
