@@ -1,12 +1,16 @@
 // colors
-$accent-color:	#5F9F9F;
+$accent-color:		#5f9f9f;
+$hover-color:		lighten($accent-color, 15%);
 
 // font sizes
-$font-xxl:	3.5rem;
-$font-xl:	2.5rem;
-$font-l:	1.75rem;
-$font-m:	1.375rem;
-$font-s:	1rem;
+$font-xxl:			3.5rem;
+$font-xl:			2.5rem;
+$font-l:			1.75rem;
+$font-m:			1.375rem;
+$font-s:			1rem;
+
+// timing
+$transition-time:	.3s;
 
 @import url(http://fonts.googleapis.com/css?family=Lato:400,700);
 
@@ -26,6 +30,11 @@ body {
 a {
 	text-decoration: none;
 	color: $accent-color;
+	transition: color $transition-time;
+
+	&:hover {
+		color: $hover-color;
+	}
 }
 
 h1, h2, h3 {
@@ -81,7 +90,7 @@ nav {
 
 main {
 	margin-top: 20px;
-	border-top: dashed 1px #ccc;	
+	border-top: dashed 1px #ccc;
 }
 
 .announcement {
@@ -102,9 +111,9 @@ main {
 		padding: 20px;
 		border-top: solid 4px #ccc;
 		border-radius: 0 0 6px 6px;
-		color: #666;
 		background-color: #fff;
-		transition: all .3s;
+		cursor: pointer;
+		transition: border-top-color $transition-time;
 
 		&:hover {
 			border-top-color: #666;
@@ -113,30 +122,33 @@ main {
 				color: #666;
 			}
 
-			.author a {
+			a {
 				color: $accent-color;
+
+				&:hover {
+					color: $hover-color;
+				}
 			}
 		}
 	}
 
 	.info {
 		color: #ccc;
-		transition: all .5s;
+		transition: color $transition-time;
 
 		.fa {
 			margin-right: 8px;
 			transform: scale(1.3);
 			transform-origin: 0;
 		}
+
+		a {
+			color: #ccc;
+		}
 	}
 
 	.author {
 		float: right;
-
-		a {
-			color: #ccc;
-			transition: all .5s;
-		}
 	}
 
 	h3 {
@@ -148,10 +160,10 @@ main {
 	.blurb {
 		margin-top: 10px;
 		line-height: 1.3;
-	}
 
-	.author {
-		float: right;
+		a {
+			color: #666;
+		}
 	}
 }
 
