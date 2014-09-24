@@ -5,11 +5,11 @@ $break-3:			"(min-width: 800px)";
 $break-4:			"(min-width: 1400px)";
 
 // colors
-$bg-color:			#f4f4f4;
+$bg-color:			#eee;
 $panel-color:		#fff;
 $accent-color:		#5f9f9f;
 $hover-color:		darken($accent-color, 10%);
-$default-color:		#666;
+$default-color:		#555;
 $lighter-color:		#bbb;
 
 // font sizes
@@ -80,7 +80,6 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 40px;
-	font-size: $l-font;
 
 	& > * {
 		white-space: nowrap;

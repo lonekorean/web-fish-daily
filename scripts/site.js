@@ -1,3 +1,27 @@
+/* global ga */
+
+'use strict';
+
+// google analytics
+$(function() {
+	function initTracking() {
+		$('.cards article h3 a').on('click', trackOutboundClick);
+	}
+
+	function trackOutboundClick(e) {
+		if ('ga' in window) {
+			var url = $(e.currentTarget).attr('href');
+			ga('send', 'event', 'outbound', 'click', url, {
+				'hitCallback': function() {
+					document.location = url;
+				}
+			});
+		}
+	}
+
+	initTracking();
+});
+
 // make full area of cards clickable
 $(function() {
 	function initCards() {
@@ -7,7 +31,7 @@ $(function() {
 	function triggerClick(e) {
 		// trigger click on card's link only if click target isn't already a link
 		if (!$(e.target).is('a')) {
-			$(this).find('h3 a')[0].click();
+			$(e.currentTarget).find('h3 a')[0].click();
 		}
 	}
 
