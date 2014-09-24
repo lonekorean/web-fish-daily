@@ -1,8 +1,8 @@
 // breakpoints
-$break-1:			"(min-width: 400px)";
-$break-2:			"(min-width: 600px)";
-$break-3:			"(min-width: 800px)";
-$break-4:			"(min-width: 1400px)";
+$break-1:			"(min-width: 400px)";	// show categories
+$break-2:			"(min-width: 600px)";	// inline countdown icon
+$break-3:			"(min-width: 800px)";	// larger header, more whitespace, 2 card columns
+$break-4:			"(min-width: 1400px)";	// 4 card columns
 
 // colors
 $bg-color:			#eee;
@@ -69,6 +69,7 @@ h1 {
 
 h2 {
 	font-size: $l-font;
+	font-weight: bold;
 }
 
 h3 {
@@ -177,15 +178,15 @@ main {
 			content: '';
 		}
 
-		.fa {
-			margin-right: 8px;
-			transform: scale(1.3);
-			transform-origin: 0;
-		}
-
 		a {
 			color: $lighter-color;
 		}
+	}
+
+	.fa {
+		margin-right: 8px;
+		transform: scale(1.3);
+		transform-origin: 0;
 	}
 
 	.category {
@@ -257,5 +258,30 @@ main {
 			display: inline;
 			margin-right: 6px;
 		}
+	}
+
+	.time {
+		font-weight: bold;
+	}
+}
+
+footer {
+	margin-top: 60px;
+	padding-top: 20px;
+	border-top: dashed 1px $panel-color;
+	text-align: center;
+
+	@media #{$break-3} {
+		margin-top: 80px;
+	}
+
+	.fa {
+		font-size: $xl-font;
+	}
+
+	.fine-print {
+		margin-top: 10px;
+		line-height: 1.3;
+		color: $lighter-color;
 	}
 }
