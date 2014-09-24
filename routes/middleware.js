@@ -1,5 +1,5 @@
 exports.initLocals = function(req, res, next) {
-	res.locals.env = process.env.OPENSHIFT_APP_NAME ? 'prod' : 'dev';
+	res.locals.isProd = !!process.env.OPENSHIFT_APP_NAME;
 	res.locals.scriptVars = {};
 	return next();
 };
