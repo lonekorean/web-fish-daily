@@ -63,8 +63,9 @@ NOTES
 - Share widgets for each link (AddThis or custom?)
 - Rely on canonical URL spec to handle multiple date formats that are actually the same date
 
-BEFORE LAUNCH
-=============
+LAUNCH CHECKLIST
+================
 - Change Links view check for '/home' to '/'
-
-//m4
+- Change launch date config value
+- Check future nav permissions
+- Set canonical URLs
