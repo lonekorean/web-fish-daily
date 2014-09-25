@@ -10,7 +10,7 @@ git push openshift HEAD
 
 TECHNOLOGY STACK
 ================
-- openshift 	https://www.openshift.com/
+- openshift
 - Node
 - Gulp
 - KeystoneJS
@@ -18,8 +18,7 @@ TECHNOLOGY STACK
 - Handlebars
 - Mongoose
 - MongoDB
-- Foundation
-- SASS
+- Sass
 - Google Analytics
 
 GULP TASKS
@@ -42,30 +41,13 @@ Tool			fa-wrench			generators, validators, parsers, plugins
 Tutorial		fa-code				how-tos
 Showcase		fa-star				(basically a catch-all)
 
-VIRTUAL LINK CATEGORIES
-=======================
-- Sneak Peak	Show a link from tomorrow early
-- Flashback		Show a link from the past (by some criteria?)
-- Sponsored		Hey, maybe one day
-
-PATHS
-=====
-/
-/archives/2014-09-18
-/categories/articles
-/about
-
-NOTES
-=====
-- Using history.pushState()
-  https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history
-- Date navigation will be a combination of ajax calls and push state (possibly pre-loaded?)
-- Share widgets for each link (AddThis or custom?)
-- Rely on canonical URL spec to handle multiple date formats that are actually the same date
-
 LAUNCH CHECKLIST
 ================
-- Change Links view check for '/home' to '/'
+- Change '/home' to '/'
 - Change launch date config value
 - Check future nav permissions
 - Set canonical URLs
+- Cross browser check
+- No CSS check
+- No JS check
+- Mobile device check
