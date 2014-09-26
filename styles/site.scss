@@ -5,12 +5,12 @@ $break-3:			"(min-width: 800px)";	// larger header, more whitespace, 2 card colu
 $break-4:			"(min-width: 1400px)";	// 4 card columns
 
 // colors
-$bg-color:			#fff;
-$panel-color:		#f4f4f4;
-$accent-color:		#5f9f9f;
-$hover-color:		darken($accent-color, 10%);
-$default-color:		#555;
-$lighter-color:		#bbb;
+$bg-color:			#f0f6f7;	// blue, S = 4
+$panel-color:		#fff;
+$accent-color:		#d9993f;	// orange, B = 85
+$hover-color:		lighten($accent-color, 10%);
+$default-color:		#5d7075;	// blue, B = 46
+$lighter-color:		#aebec2;	// blue, B = 76, S = 10
 
 // font sizes
 $xxl-font:			3.5rem;	// h1 on desktop
@@ -66,7 +66,6 @@ h2 {
 }
 
 h3 {
-	font-weight: normal;
 	font-size: $m-font;
 }
 
