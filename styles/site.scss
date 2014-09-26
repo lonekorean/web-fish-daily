@@ -160,6 +160,10 @@ main {
 		cursor: pointer;
 		transition: border-top-color $fade-time;
 
+		&:hover {
+			border-top-color: $default-color;
+		}
+
 		@media #{$break-3} {
 			flex: 0 1 calc(50% - 20px);
 		}
@@ -167,36 +171,15 @@ main {
 		@media #{$break-4} {
 			flex: 0 1 calc(25% - 20px);
 		}
-
-		&:hover {
-			border-top-color: $default-color;
-
-			.info {
-				color: $default-color;
-			}
-
-			a {
-				color: $accent-color;
-
-				&:hover {
-					color: $hover-color;
-				}
-			}
-		}
 	}
 
 	.info {
 		color: $lighter-color;
-		transition: color $fade-time;
 
 		&::after {
 			display: block;
 			clear: both;
 			content: '';
-		}
-
-		a {
-			color: $lighter-color;
 		}
 	}
 
@@ -227,10 +210,6 @@ main {
 	.blurb {
 		margin-top: 10px;
 		line-height: 1.3;
-
-		a {
-			color: $default-color;
-		}
 	}
 }
 
