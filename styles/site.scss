@@ -1,7 +1,7 @@
 // breakpoints
-$break-1:			"(min-width: 400px)";	// larger nav date, show category
+$break-1:			"(min-width: 400px)";	// show category
 $break-2:			"(min-width: 600px)";	// inline countdown icon
-$break-3:			"(min-width: 800px)";	// larger header, more whitespace, 2 card columns
+$break-3:			"(min-width: 800px)";	// make things bigger, more whitespace, 2 card columns
 $break-4:			"(min-width: 1400px)";	// 4 card columns
 
 // colors
@@ -14,15 +14,15 @@ $lighter-color:		#8dabb3;	// blue, B = 70
 
 // font sizes
 $xxl-font:			3.5rem;	// h1 on desktop
-$xl-font:			2.4rem;	// h1, nav icons, countdown icon
-$l-font:			1.7rem;	// h2, nav, notice, countdown
-$m-font:			1.4rem;	// h3, announcement
+$xl-font:			2.6rem;	// h1, nav icons on desktop, countdown and footer icons
+$l-font:			1.8rem;	// h2, nav icons
+$m-font:			1.5rem;	// h3, announcement, notice, countdown
 $s-font:			1rem;	// body
 
 // transitions
 $fade-time:			.25s;
 
-@import url(http://fonts.googleapis.com/css?family=Lato:400,700);
+@import url(http://fonts.googleapis.com/css?family=Dosis:400,700|Lato:400,700);
 
 *, *::before, *::after {
 	box-sizing: border-box;
@@ -50,6 +50,7 @@ a {
 h1, h2, h3 {
 	margin: 0;
 	line-height: 1.2;
+	font-family: 'Dosis', sans-serif;
 }
 
 h1 {
@@ -62,11 +63,7 @@ h1 {
 }
 
 h2 {
-	font-size: $m-font;
-
-	@media #{$break-1} {
-		font-size: $l-font;
-	}
+	font-size: $l-font;
 }
 
 h3 {
@@ -77,11 +74,23 @@ header {
 	text-align: center;
 }
 
+.logo {
+	width: 90px;
+
+	@media #{$break-3} {
+		width: 120px;
+	}
+}
+
 nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 10px;
+	margin-top: 5px;
+
+	@media #{$break-3} {
+		margin-top: 0;
+	}
 
 	& > * {
 		white-space: nowrap;
@@ -105,7 +114,11 @@ nav {
 	}
 
 	.fa {
-		font-size: $xl-font;
+		font-size: $l-font;
+
+		@media #{$break-3} {
+			font-size: $xl-font;
+		}
 	}
 }
 
@@ -226,20 +239,15 @@ main {
 	border-radius: 10px;
 	line-height: 1.2;
 	text-align: center;
-	font-size: $l-font;
+	font-size: $m-font;
 	background-color: $panel-color;
-
-	@media #{$break-3} {
-		margin-top: 40px;
-		padding: 40px 10px;
-	}
 }
 
 .countdown {
 	margin-top: 30px;
 	line-height: 1.2;
 	text-align: center;
-	font-size: $l-font;
+	font-size: $m-font;
 
 	@media #{$break-2} {
 		& > * {
@@ -263,7 +271,7 @@ main {
 	}
 
 	.time {
-		font-weight: bold;
+		font-weight: 700;
 	}
 }
 

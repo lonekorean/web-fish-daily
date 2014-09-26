@@ -51,3 +51,7 @@ LAUNCH CHECKLIST
 - No CSS check
 - No JS check
 - Mobile device check
+- Meta descriptions
+- 4-up/6-up layout
+- No hover blurb links
+- Bigger nav date on mobile
