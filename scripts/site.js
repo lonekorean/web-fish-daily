@@ -11,11 +11,7 @@ $(function() {
 	function trackOutboundClick(e) {
 		if ('ga' in window) {
 			var url = $(e.currentTarget).attr('href');
-			ga('send', 'event', 'outbound', 'click', url, {
-				'hitCallback': function() {
-					document.location = url;
-				}
-			});
+			ga('send', 'event', 'outbound', 'click', url);
 		}
 	}
 
