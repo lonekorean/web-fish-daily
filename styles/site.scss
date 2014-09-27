@@ -95,23 +95,21 @@ nav {
 	}
 
 	& > * {
+		flex: none;
 		white-space: nowrap;
 	}
 
 	h2 {
 		order: 2;
-		flex: none;
 	}
 
 	.prev {
 		order: 1;
-		flex: 1 1 0;
 		text-align: left;
 	}
 
 	.next {
 		order: 3;
-		flex: 1 1 0;
 		text-align: right;
 	}
 
@@ -151,10 +149,12 @@ main {
 	}
 
 	article {
-		flex: 0 1 100%;
+		box-sizing: content-box; // IE doesn't respect border-box with flex-basis
+		flex: none; // IE can't parse calc() within flex shorthand
+		flex-basis: calc(100% - 60px); // math using content-box
 		margin: 10px;
 		padding: 20px;
-		border-top: solid 3px $lighter-color;
+		border-top: solid 1px $lighter-color;
 		border-radius: 0 0 10px 10px;
 		background-color: $panel-color;
 		cursor: pointer;
@@ -165,11 +165,11 @@ main {
 		}
 
 		@media #{$break-3} {
-			flex: 0 1 calc(50% - 20px);
+			flex-basis: calc(50% - 60px); // math using content-box
 		}
 
 		@media #{$break-4} {
-			flex: 0 1 calc(25% - 20px);
+			flex-basis: calc(25% - 60px); // math using content-box
 		}
 	}
 
@@ -216,7 +216,6 @@ main {
 .notice {
 	margin-top: 30px;
 	padding: 20px 10px;
-	border-radius: 0 0 6px 6px;
 	border-radius: 10px;
 	line-height: 1.2;
 	text-align: center;

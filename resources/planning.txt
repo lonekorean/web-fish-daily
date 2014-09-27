@@ -51,4 +51,5 @@ LAUNCH CHECKLIST
 - Mobile device check
 - 4-up/6-up layout
 - Set favicon
-- Fix flex in IE
+- Add refresh GA event
+- Make lighter color a shade lighter
