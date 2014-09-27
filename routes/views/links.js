@@ -40,6 +40,13 @@ exports = module.exports = function(req, res) {
 		res.locals.prevDate = moment(res.locals.currentDate).add(-1, 'd').format(config.dateFormat);
 		res.locals.nextDate = moment(res.locals.currentDate).add(1, 'd').format(config.dateFormat);
 
+		// set canonical URL
+		if (res.locals.isHome) {
+			res.locals.canonicalUrl = config.host;
+		} else {
+			res.locals.canonicalUrl = config.host + '/archives/' + res.locals.currentDate;
+		}
+
 		// nav dates visiblity
 		res.locals.showPrevDate = (res.locals.prevDate >= config.launchDate);
 		res.locals.showNextDate = !!(res.locals.nextDate <= actualCurrentDate || req.user);

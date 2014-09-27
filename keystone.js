@@ -32,6 +32,7 @@ keystone['import']('models');
 // common locals for templates
 keystone.set('locals', {
 	config: {
+		host: 'http://www.webfishdaily.com',
 		homePath: '/home',
 		timezone: 'America/Vancouver',
 		dateFormat: 'YYYY-MM-DD',
