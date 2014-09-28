@@ -1,8 +1,8 @@
 // breakpoints
 $break-1:			"(min-width: 400px)";	// show category
-$break-2:			"(min-width: 600px)";	// inline countdown icon
+$break-2:			"(min-width: 500px)";	// inline countdown icon
 $break-3:			"(min-width: 800px)";	// make things bigger, more whitespace, 2 card columns
-$break-4:			"(min-width: 1400px)";	// 4 card columns
+$break-4:			"(min-width: 1500px)";	// 4 card columns
 
 // colors
 $bg-color:			#ebf5f7;	// blue, S = 5
@@ -10,15 +10,20 @@ $panel-color:		#fff;
 $accent-color:		#eba544;	// orange, B = 92
 $hover-color:		darken($accent-color, 10%);
 $default-color:		#61757a;	// blue, B = 48
-$lighter-color:		#8dabb3;	// blue, B = 70
-
-// transitions
-$fade-time:			.25s;
+$lighter-color:		#99bac2;	// blue, B = 76
 
 @import url(http://fonts.googleapis.com/css?family=Dosis:600,700|Lato:400,700);
 
 *, *::before, *::after {
 	box-sizing: border-box;
+}
+
+.for-screen-reader {
+	position: absolute;
+	left: -99999px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
 }
 
 body {
@@ -32,7 +37,7 @@ body {
 a {
 	text-decoration: none;
 	color: $accent-color;
-	transition: color $fade-time;
+	transition: color .25s;
 
 	&:hover {
 		color: $hover-color;
@@ -158,11 +163,6 @@ main {
 		border-radius: 0 0 10px 10px;
 		background-color: $panel-color;
 		cursor: pointer;
-		transition: border-top-color $fade-time;
-
-		&:hover {
-			border-top-color: $default-color;
-		}
 
 		@media #{$break-3} {
 			flex-basis: calc(50% - 60px); // math using content-box
@@ -199,6 +199,11 @@ main {
 
 	.author {
 		float: right;
+
+		a {
+			margin: -10px;
+			padding: 10px;
+		}
 	}
 
 	h3 {

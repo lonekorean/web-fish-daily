@@ -38,12 +38,18 @@
 					<h2>{{formatCurrentDate currentDate 'MMMM Do' isHome}}</h2>
 					<div class="prev">
 						{{#if showPrevDate}}
-							<a href="{{getNavUrl prevDate}}"><i class="fa fa-arrow-left"></i></a>
+							<a href="{{getNavUrl prevDate}}">
+								<i class="fa fa-arrow-left"></i>
+								<span class="for-screen-reader">Previous Date</a>
+							</a>
 						{{/if}}
 					</div>
 					<div class="next">
 						{{#if showNextDate}}
-							<a href="{{getNavUrl nextDate}}"><i class="fa fa-arrow-right"></i></a>
+							<a href="{{getNavUrl nextDate}}">
+								<i class="fa fa-arrow-right"></i>
+								<span class="for-screen-reader">Next Date</a>
+							</a>
 						{{/if}}
 					</div>
 				</nav>
@@ -54,7 +60,10 @@
 		</main>
 		<footer>
 			<div class="actions">
-				<a href="https://twitter.com/WebFishDaily" target="blank"><i class="fa fa-twitter"></i></a>
+				<a href="https://twitter.com/WebFishDaily" target="blank">
+					<i class="fa fa-twitter"></i>
+					<span class="for-screen-reader">Twitter</a>
+				</a>
 			</div>
 			<div class="fine-print">
 				Developed by <a href="https://twitter.com/lonekorean" target="_blank">Will Boyd</a>.

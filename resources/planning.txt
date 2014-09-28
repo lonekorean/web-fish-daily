@@ -46,10 +46,5 @@ LAUNCH CHECKLIST
 - Change '/home' to '/'
 - Change launch date config value
 - Check future nav permissions
-- No CSS check
-- No JS check
-- Mobile device check
-- 4-up/6-up layout
+- iPhone check
 - Set favicon
-- Add refresh GA event
-- Make lighter color a shade lighter

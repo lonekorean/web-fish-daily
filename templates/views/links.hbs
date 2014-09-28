@@ -22,10 +22,10 @@
 		<i class="fa fa-clock-o"></i>
 		<span>
 			{{#if sneakPeakSeconds}}
-				Sneak peak at tomorrow's catch in <span class="time" data-seconds="{{sneakPeakSeconds}}"></span>.
+				Sneak peak at tomorrow's catch in <span class="time" data-seconds="{{sneakPeakSeconds}}">due time</span>.
 			{{/if}}
 			{{#if tomorrowSeconds}}
-				Tomorrow's catch arrives in <span class="time" data-seconds="{{tomorrowSeconds}}"></span>.
+				Tomorrow's catch arrives in <span class="time" data-seconds="{{tomorrowSeconds}}">due time</span>.
 				{{#if sneakPeakLink}}Here's a sneak peak.{{/if}}
 			{{/if}}
 		</span>

@@ -2,25 +2,35 @@
 
 'use strict';
 
-// google analytics
+// namespace
+window.wfd = {};
+
+// global event tracking helper
+window.wfd.trackEvent = function(category, action, label) {
+	if ('ga' in window) {
+		ga('send', 'event', category, action, label);
+	} else {
+		console.log('trackEvent()', category, action, label);
+	}
+};
+
+// track outbound links
 $(function() {
-	function initTracking() {
+	function init() {
 		$('.cards article h3 a').on('click', trackOutboundClick);
 	}
 
 	function trackOutboundClick(e) {
-		if ('ga' in window) {
-			var url = $(e.currentTarget).attr('href');
-			ga('send', 'event', 'outbound', 'click', url);
-		}
+		var url = $(e.currentTarget).attr('href');
+		window.wfd.trackEvent('outbound', 'click', url);
 	}
 
-	initTracking();
+	init();
 });
 
-// make full area of cards clickable
+// make entirety of cards clickable
 $(function() {
-	function initCards() {
+	function init() {
 		$('.cards article').on('click', triggerClick);
 	}
 
@@ -31,12 +41,12 @@ $(function() {
 		}
 	}
 
-	initCards();
+	init();
 });
 
 // display and maintain countdowns
 $(function() {
-	function initCountdowns() {
+	function init() {
 		$('.time').each(function() {
 			var $time = $(this);
 			var endSeconds = getCurrentSeconds() + parseInt($time.attr('data-seconds'), 10);
@@ -50,7 +60,7 @@ $(function() {
 			displayCountdown($time, endSeconds);
 		} else {
 			// done
-			location.reload(true);
+			window.location.reload(true);
 		}
 	}
 
@@ -86,5 +96,5 @@ $(function() {
 		return Math.ceil(Date.now() / 1000);
 	}
 
-	initCountdowns();
+	init();
 });
