@@ -47,4 +47,4 @@ LAUNCH CHECKLIST
 - Change launch date config value
 - Check future nav permissions
 - iPhone check
-- Set favicon
+- Social media cards
