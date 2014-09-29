@@ -5,6 +5,16 @@ var moment = require('moment-timezone');
 module.exports = function() {
 	var _helpers = {};
 
+	_helpers.getTitle = function(title) {
+		var config = keystone.app.locals.config;
+		return config.siteName + (title ? ' - ' + title : '');
+	};
+
+	_helpers.getDescription = function() {
+		var config = keystone.app.locals.config;
+		return config.siteDescription;
+	};
+
 	_helpers.formatDate = function(date, format) {
 		return moment(date).format(format);
 	};

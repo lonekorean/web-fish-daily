@@ -3,14 +3,19 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="A fresh catch of web development links, updated daily.">
+		<meta name="description" content="{{getDescription}}">
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:creator" content="@WebFishDaily">
+		<meta name="twitter:site" content="@WebFishDaily">
+		<meta name="twitter:title" content="{{getTitle title}}">
+		<meta name="twitter:description" content="{{getDescription}}">
+		<meta property="og:type" content="article">
+		<meta property="og:title" content="{{getTitle title}}">
+		<meta property="og:description" content="{{getDescription}}">
 
-		<title>Web Fish Daily{{#if pageTitle}} - {{pageTitle}}{{/if}}</title>
+		<title>{{getTitle title}}</title>
 
-		{{#if canonicalUrl}}
-			<link rel="canonical" href="{{canonicalUrl}}">
-		{{/if}}
-
+		{{#if canonicalUrl}}<link rel="canonical" href="{{canonicalUrl}}">{{/if}}
 		<link rel="shortcut icon" href="/favicon.ico?v=2">
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/css/vendor/normalize.css">
@@ -40,7 +45,7 @@
 						{{#if showPrevDate}}
 							<a href="{{getNavUrl prevDate}}">
 								<i class="fa fa-arrow-left"></i>
-								<span class="for-screen-reader">Previous Date</a>
+								<span class="for-screen-reader">Previous Day</a>
 							</a>
 						{{/if}}
 					</div>
@@ -48,7 +53,7 @@
 						{{#if showNextDate}}
 							<a href="{{getNavUrl nextDate}}">
 								<i class="fa fa-arrow-right"></i>
-								<span class="for-screen-reader">Next Date</a>
+								<span class="for-screen-reader">Next Day</a>
 							</a>
 						{{/if}}
 					</div>

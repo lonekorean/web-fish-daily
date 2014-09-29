@@ -123,7 +123,7 @@ exports = module.exports = function(req, res) {
 	// set page title
 	view.on('init', function(next) {
 		if (!res.locals.isHome) {
-			res.locals.pageTitle = moment(res.locals.currentDate).format('MMM Do, YYYY');
+			res.locals.title = moment(res.locals.currentDate).format('MMM Do, YYYY');
 		}
 
 		return next();
