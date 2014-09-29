@@ -47,4 +47,6 @@ LAUNCH CHECKLIST
 - Change launch date config value
 - Check future nav permissions
 - iPhone check
-- Social media cards
+- put SVG logo in place
+- animate SVG logo
+- make SVG logo respond to mouse position
