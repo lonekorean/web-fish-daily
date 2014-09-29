@@ -1,16 +1,21 @@
+
 // breakpoints
+
 $break-1:			"(min-width: 400px)";	// show category
 $break-2:			"(min-width: 500px)";	// inline countdown icon
 $break-3:			"(min-width: 800px)";	// make things bigger, more whitespace, 2 card columns
 $break-4:			"(min-width: 1500px)";	// 4 card columns
 
 // colors
+
 $bg-color:			#ebf5f7;	// blue, S = 5
 $panel-color:		#fff;
 $accent-color:		#eba544;	// orange, B = 92
 $hover-color:		darken($accent-color, 10%);
 $default-color:		#61757a;	// blue, B = 48
 $lighter-color:		#99bac2;	// blue, B = 76
+
+// styles
 
 @import url(http://fonts.googleapis.com/css?family=Dosis:600,700|Lato:400,700);
 
@@ -81,10 +86,34 @@ header {
 }
 
 .logo {
-	width: 90px;
+	display: inline-block;
+	margin: -60px -100px;
+	padding: 60px 100px;
+	border-radius: 50%;
+	background: radial-gradient(ellipse closest-side, $panel-color 60%, $bg-color);
 
-	@media #{$break-3} {
-		width: 120px;
+	svg {
+		width: 90px;
+
+		@media #{$break-3} {
+			width: 130px;
+		}
+	}
+
+	g {
+		transform: rotate(.001deg); // forces firefox to do sub-pixel animation
+	}
+
+	.flip {
+		//transform: translateX(235px) scaleX(-1);
+	}
+
+	.bob {
+		animation: fish-bob 7s infinite;
+	}
+
+	.look {
+		animation: fish-look 11s infinite;
 	}
 }
 
@@ -283,5 +312,28 @@ footer {
 		margin-top: 10px;
 		line-height: 1.3;
 		color: $lighter-color;
+	}
+}
+
+// animation keyframes
+
+@keyframes fish-bob {
+	0% {
+		transform: translateY(-4px);
+	}
+	50% {
+		transform: translateY(3px);
+	}
+	100% {
+		transform: translateY(-4px);
+	}
+}
+
+@keyframes fish-look {
+	50% {
+		transform: translate(1px, 2px);
+	}
+	80% {
+		transform: translate(1px, -3px);
 	}
 }
