@@ -99,9 +99,11 @@ header {
 
 	svg {
 		width: 90px;
+		height: 114px;
 
 		@media #{$break-3} {
 			width: 130px;
+			height: 164px;
 		}
 	}
 
