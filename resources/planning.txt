@@ -46,7 +46,3 @@ LAUNCH CHECKLIST
 - Change '/home' to '/'
 - Change launch date config value
 - Check future nav permissions
-- iPhone check
-- put SVG logo in place
-- animate SVG logo
-- make SVG logo respond to mouse position

@@ -12,7 +12,7 @@ $bg-color:			#ebf5f7;
 $panel-color:		#fff;
 $accent-color:		#eba544;
 $hover-color:		darken($accent-color, 10%);
-$default-color:		#61757a;
+$default-color:		#5d7075;
 $lighter-color:		#99bac2;
 
 // styles
@@ -99,7 +99,7 @@ header {
 
 	svg {
 		width: 90px;
-		height: 114px;
+		height: 114px; // safari doesn't auto-scale height
 
 		@media #{$break-3} {
 			width: 130px;
