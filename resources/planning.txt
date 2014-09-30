@@ -46,3 +46,7 @@ LAUNCH CHECKLIST
 - Change '/home' to '/'
 - Change launch date config value
 - Check future nav permissions
+- Set up WFD twitter
+- Fix SVG height via Sass
+- Revisit footer (links, Joni credit)
+- Tracking for footer links
