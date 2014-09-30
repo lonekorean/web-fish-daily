@@ -8,12 +8,12 @@ $break-4:			"(min-width: 1500px)";	// 4 card columns
 
 // colors
 
-$bg-color:			#ebf5f7;	// blue, S = 5
+$bg-color:			#ebf5f7;
 $panel-color:		#fff;
-$accent-color:		#eba544;	// orange, B = 92
+$accent-color:		#eba544;
 $hover-color:		darken($accent-color, 10%);
-$default-color:		#61757a;	// blue, B = 48
-$lighter-color:		#99bac2;	// blue, B = 76
+$default-color:		#61757a;
+$lighter-color:		#99bac2;
 
 // styles
 
@@ -90,7 +90,7 @@ header {
 	margin: -60px -100px;
 	padding: 60px 100px;
 	border-radius: 50%;
-	background: radial-gradient(ellipse closest-side, $panel-color 60%, $bg-color);
+	background: radial-gradient(ellipse closest-side, $panel-color 70%, $bg-color);
 
 	@media #{$break-3} {
 		margin: -80px -130px;
@@ -327,9 +327,6 @@ footer {
 	}
 	96% {
 		transform: translateX(80px) scaleX(-1);
-	}
-	100% {
-		transform: translateX(0px) scaleX(1);
 	}
 }
 
