@@ -33,12 +33,11 @@ keystone['import']('models');
 keystone.set('locals', {
 	config: {
 		host: 'http://www.webfishdaily.com',
-		homePath: '/home',
 		siteName: 'Web Fish Daily',
 		siteDescription: 'A fresh catch of web development links, updated daily.',
 		timezone: 'America/Vancouver',
 		dateFormat: 'YYYY-MM-DD',
-		launchDate: '2014-09-11',
+		launchDate: '2014-10-01',
 		sneakPeakHour: 18
 	}
 });

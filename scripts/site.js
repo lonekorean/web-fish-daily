@@ -17,7 +17,7 @@ window.wfd.trackEvent = function(category, action, label) {
 // track outbound links
 $(function() {
 	function init() {
-		$('.cards article h3 a').on('click', trackOutboundClick);
+		$('.cards article h3 a, footer a').on('click', trackOutboundClick);
 	}
 
 	function trackOutboundClick(e) {

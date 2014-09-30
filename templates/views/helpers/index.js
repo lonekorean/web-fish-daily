@@ -26,7 +26,7 @@ module.exports = function() {
 	_helpers.getNavUrl = function(date) {
 		var config = keystone.app.locals.config;
 		var today = moment.tz(config.timezone).startOf('d').format(config.dateFormat);
-		return ((date === today) ? config.homePath : '/archives/' + date);
+		return ((date === today) ? '/' : '/archives/' + date);
 	};
 
 	_helpers.linkAuthor = function(author) {

@@ -7,7 +7,7 @@ exports = module.exports = function(req, res) {
 
 	// miscellaneous setup
 	view.on('init', function(next) {
-		res.locals.isHome = (req.route.path === config.homePath);
+		res.locals.isHome = (req.route.path === '/');
 		res.locals.sneakPeakHour = req.query.sneakpeakhour || config.sneakPeakHour;
 
 		return next();
