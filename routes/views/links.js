@@ -9,6 +9,7 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		res.locals.isHome = (req.route.path === '/');
 		res.locals.sneakPeakHour = req.query.sneakpeakhour || config.sneakPeakHour;
+		res.locals.enableTracking = res.locals.isProd && !res.locals.isSignedIn;
 
 		return next();
 	});
@@ -24,7 +25,7 @@ exports = module.exports = function(req, res) {
 			var incomingMoment = moment(req.params.date, config.dateFormat);
 			if (incomingMoment.isValid()) {
 				var incomingDate = incomingMoment.format(config.dateFormat);
-				if (incomingDate >= config.launchDate && (incomingDate <= actualCurrentDate || req.user)) {
+				if (incomingDate >= config.launchDate && (incomingDate <= actualCurrentDate || res.locals.isSignedIn)) {
 					overrideCurrentDate = incomingDate;
 				}
 			}
@@ -49,7 +50,7 @@ exports = module.exports = function(req, res) {
 
 		// nav dates visiblity
 		res.locals.showPrevDate = (res.locals.prevDate >= config.launchDate);
-		res.locals.showNextDate = !!(res.locals.nextDate <= actualCurrentDate || req.user);
+		res.locals.showNextDate = (res.locals.nextDate <= actualCurrentDate || res.locals.isSignedIn);
 
 		return next();
 	});

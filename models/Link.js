@@ -10,7 +10,7 @@ var Link = new keystone.List('Link', {
 		unique: true
 	},
 	map: { name: 'title' },
-	defaultColumns: 'title|60%, publish|20%, createdBy|20%',
+	defaultColumns: 'title|55%, priority|15%, publish|15%, createdBy|15%',
 	defaultSort: '-publish'
 });
 Link.add({

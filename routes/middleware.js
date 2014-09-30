@@ -1,5 +1,6 @@
 exports.initLocals = function(req, res, next) {
 	res.locals.isProd = !!process.env.OPENSHIFT_APP_NAME;
+	res.locals.isSignedIn = !!req.user;
 	res.locals.scriptVars = {};
 	return next();
 };
