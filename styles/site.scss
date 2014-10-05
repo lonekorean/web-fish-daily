@@ -130,13 +130,13 @@ nav {
 		margin-top: 0;
 	}
 
-	& > * {
-		flex: none;
-		white-space: nowrap;
-	}
-
 	h2 {
 		order: 2;
+	}
+
+	.prev, .next {
+		flex: auto;
+		flex-basis: 0; // IE likes it separate, for some reason
 	}
 
 	.prev {
