@@ -30,13 +30,9 @@ module.exports = function() {
 	};
 
 	_helpers.linkAuthor = function(author) {
-		if(!author) {
-			return '';
-		} else if (author.charAt(0) === '@') {
-			return '<a href="https://twitter.com/' + author.substring(1) + '" target="_blank">' + author + '</a>';
-		} else {
-			return author;
-		}
+		author = author || '';
+		author = author.replace(/@(\w+)/g, '<a href="https://twitter.com/$1">@$1</a>');
+		return author;
 	};
 
 	_helpers.outputScriptVars = function(scriptVars) {
