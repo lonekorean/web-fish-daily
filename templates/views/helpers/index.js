@@ -31,7 +31,7 @@ module.exports = function() {
 
 	_helpers.linkAuthor = function(author) {
 		author = author || '';
-		author = author.replace(/@(\w+)/g, '<a href="https://twitter.com/$1">@$1</a>');
+		author = author.replace(/@(\w+)/g, '<a href="https://twitter.com/$1" target="_blank">@$1</a>');
 		return author;
 	};
 
