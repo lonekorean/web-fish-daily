@@ -34,7 +34,7 @@ keystone.set('locals', {
 	config: {
 		host: 'http://www.webfishdaily.com',
 		siteName: 'Web Fish Daily',
-		siteDescription: 'A fresh catch of web development links, updated daily.',
+		siteDescription: 'Web Fish Daily delivers a fresh catch of web development links every day.',
 		timezone: 'America/Vancouver',
 		dateFormat: 'YYYY-MM-DD',
 		launchDate: '2014-10-01',

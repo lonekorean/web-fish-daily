@@ -10,9 +10,9 @@ module.exports = function() {
 		return config.siteName + (title ? ' - ' + title : '');
 	};
 
-	_helpers.getDescription = function() {
+	_helpers.getDescription = function(description) {
 		var config = keystone.app.locals.config;
-		return config.siteDescription;
+		return description || config.siteDescription;
 	};
 
 	_helpers.formatDate = function(date, format) {
@@ -21,6 +21,10 @@ module.exports = function() {
 
 	_helpers.formatCurrentDate = function(date, format, isHome) {
 		return (isHome ? 'Today\'s Catch' : _helpers.formatDate(date, format));
+	};
+
+	_helpers.formatCategory = function(category) {
+		return category.toLowerCase();
 	};
 
 	_helpers.getNavUrl = function(date) {

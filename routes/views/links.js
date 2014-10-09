@@ -121,10 +121,32 @@ exports = module.exports = function(req, res) {
 		}
 	});
 
-	// set page title
+	// set archives page title/description
 	view.on('init', function(next) {
 		if (!res.locals.isHome) {
 			res.locals.title = moment(res.locals.currentDate).format('MMM Do, YYYY');
+
+			// build up description based on this day's content
+			var description = '';
+			if (res.locals.announcement) {
+				description += res.locals.announcement + ' - ';
+			}
+			if (res.locals.links && res.locals.links.length > 0) {
+				description += 'This day\'s catch includes ';
+				for (var i = 0; i < 2; i++) {
+					var link = res.locals.links[i];
+					if (link) {
+						if (i > 0) {
+							description += ' and ';
+						}
+						description += 'the "' + link.title + '" ' + link.category.name.toLowerCase();
+					}
+				}
+				description += '.';
+			} else {
+				description += 'No links for this day.';
+			}
+			res.locals.description = description;
 		}
 
 		return next();
