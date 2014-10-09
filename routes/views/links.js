@@ -129,7 +129,7 @@ exports = module.exports = function(req, res) {
 			// build up description based on this day's content
 			var description = '';
 			if (res.locals.announcement) {
-				description += res.locals.announcement + ' - ';
+				description += res.locals.announcement.headline + ' - ';
 			}
 			if (res.locals.links && res.locals.links.length > 0) {
 				description += 'This day\'s catch includes ';
