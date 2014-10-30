@@ -22,7 +22,7 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'cookie secret': 'y6efodHeho(i~HN;$0HP^)9Dd|SJT./CH1rG!khZM$~v)okHS<!$]HIA&[ofcJGq',
+	'cookie secret': process.env.COOKIE_SECRET || 'wfd-cookie-secret',
 	'mongo': process.env.OPENSHIFT_MONGODB_DB_URL || 'mongodb://localhost/web-fish-daily'
 });
 
